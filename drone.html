@@ -1,0 +1,270 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>空拍機 · 南島冬季之旅 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* Layout: a road-trip field journal. Cover + overview map, then one spread per day: photo left, logbook right. */
+:root {
+--bg: #eef3f4;      /* glacier paper */
+--card: #ffffff;
+--fg: #142327;
+--muted: #56686d;
+--line: #d3dde0;
+--accent: #0f6f79;  /* glacial meltwater teal */
+--warm: #a8741b;    /* tussock ochre */
+--tint: #dfeced;
+--display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+--body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+--data: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.7; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-family: var(--data); font-variant-numeric: tabular-nums; }
+/* cover */
+.cover { padding-block: 48px 24px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+.eyebrow { font-family: var(--data); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; font-size: 15px; margin: 0; }
+.cover h1 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 6vw, 64px); line-height: 1.15; margin: 8px 0 12px; text-wrap: balance; }
+.cover h1 small { display: block; font-family: var(--data); font-weight: 600; font-size: .38em; letter-spacing: .06em; color: var(--muted); margin-top: 6px; }
+.lede { color: var(--muted); max-width: 34em; margin: 0 0 20px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--data); font-size: 34px; line-height: 1; font-weight: 700; }
+.facts span { font-size: 13px; color: var(--muted); }
+.who { margin-top: 22px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+.who i { font-style: normal; display: inline-block; width: 22px; border-top: 2px solid var(--accent); vertical-align: middle; margin-right: 8px; }
+.who i.r { border-top: 2px dashed #d0612f; }
+.who i.g { border-top-color: #1D9E75; }
+.map { --p: var(--fg); --ts: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 8px; max-width: 100%; }
+.map svg { width: 100%; height: auto; display: block; }
+.map .th { font: 500 13px var(--body); fill: var(--fg); }
+.map .ts { font: 400 11.5px var(--body); fill: var(--muted); }
+.map .num { font: 700 10px var(--data); fill: #fff; }
+/* day nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: thin; }
+.nav a { flex: 0 0 auto; text-decoration: none; color: var(--fg); border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 2px 12px; display: flex; gap: 6px; align-items: baseline; font-family: var(--data); font-size: 15px; }
+.nav a b { font-weight: 700; color: var(--accent); }
+.nav a span { color: var(--muted); font-size: 13px; }
+.nav a:hover { border-color: var(--accent); }
+/* overview */
+.block { padding-block: 36px 8px; }
+.block h2, .day h2 { font-family: var(--display); font-weight: 900; text-wrap: balance; }
+.block h2 { font-size: 26px; margin: 0 0 14px; }
+.tablebox { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--data); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-size: 17px; }
+td.r, th.r { text-align: right; }
+.winter { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; margin-top: 18px; padding: 0; list-style: none; }
+.winter li { font-size: 14.5px; color: var(--muted); }
+.winter b { display: block; color: var(--fg); font-size: 15px; }
+/* day spreads */
+.days { display: grid; gap: 28px; padding-block: 28px 12px; }
+.day { scroll-margin-top: 70px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.photo { margin: 0; position: relative; background: var(--tint); min-height: 280px; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 16px 10px; font-size: 12.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+.badge { position: absolute; top: 14px; left: 14px; background: rgba(12, 28, 32, .82); color: #fff; border-radius: 10px; padding: 6px 12px; display: flex; flex-direction: column; line-height: 1.15; }
+.badge .dn { font-family: var(--data); font-weight: 700; font-size: 22px; letter-spacing: .04em; }
+.badge .dd { font-size: 12.5px; opacity: .85; }
+.body { padding: 24px 26px 22px; min-width: 0; }
+.day h2 { font-size: 26px; margin: 0; line-height: 1.3; }
+.route { font-family: var(--data); font-size: 21px; font-weight: 600; letter-spacing: .02em; margin: 4px 0 14px; color: var(--accent); }
+.route .arrow { color: var(--muted); padding: 0 2px; }
+.route .stay { font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+.stats { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 26px; margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats dt { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+.stats dd { margin: 0; }
+.stats dd.num { font-size: 26px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.stats .via dd { font-family: var(--data); font-size: 16px; line-height: 1.3; padding-top: 4px; }
+.camp { display: grid; gap: 0; margin-bottom: 14px; }
+.lbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; font-weight: 600; color: var(--warm); }
+.camp b { font-size: 17px; }
+.camp b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.camp b a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.camp .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.camp2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.cbox { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.cbox.g { border-top: 3px solid var(--warm); }
+.cbox.c { border-top: 3px solid var(--accent); }
+.cbox .clbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.cbox.g .clbl { color: var(--warm); } .cbox.c .clbl { color: var(--accent); }
+.cbox b { font-size: 15px; line-height: 1.35; }
+.cbox b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.cbox .lk { display: block; font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin: 0 0 2px; }
+.cbox .note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+@media (max-width: 480px) { .camp2 { gap: 6px; } .cbox { padding: 8px 8px; } .cbox b { font-size: 14px; } .cbox .cmeta, .cbox .note { font-size: 12px; } }
+.cmeta, .camp .cmeta { font-size: 13px; color: var(--muted); }
+.cbox .cmeta a.gr { color: var(--warm); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.gr:hover, .cbox .cmeta a.cm:hover { text-decoration: underline; }
+.camp .cmeta .star { color: var(--warm); font-weight: 600; }
+.camp .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.alt { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--tint); border-radius: 0 8px 8px 0; display: grid; }
+.alt.same { display: block; font-size: 13px; color: var(--muted); }
+.alt .albl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; color: var(--accent); margin-right: 8px; }
+.alt b { font-size: 15px; }
+.alt b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.alt .lk { font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin-left: 8px; }
+.camp .cmeta s { color: #c0392b; }
+.ctbl { min-width: 1000px; }
+.ctbl td:nth-child(1), .ctbl td:nth-child(3), .ctbl td:nth-child(8), .ctbl th { white-space: nowrap; }
+.cnote2 { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+td small { color: var(--muted); font-size: 12px; }
+.camp .note { font-size: 13.5px; color: var(--muted); }
+.body h3 { font-size: 13px; margin: 0 0 4px; font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; color: var(--warm); font-weight: 600; }
+.sights { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 0; }
+.sights li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 10px; line-height: 1.5; padding: 6px 0; border-top: 1px dashed var(--line); }
+.sights li:first-child { border-top: 0; }
+.sights time { font-family: var(--data); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+.sights li > div { display: grid; min-width: 0; }
+.sights b { font-weight: 600; font-size: 15px; }
+.sights li > div > span { font-size: 14px; color: var(--muted); }
+.sights b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.sights b a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.sights .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.tip { margin: 0; font-size: 14px; background: var(--tint); border-radius: 10px; padding: 10px 14px; }
+.tip .lbl { margin-right: 8px; color: var(--accent); }
+.day:nth-child(odd) .photo { order: 2; }
+/* farewell */
+.farewell { scroll-margin-top: 70px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px; display: grid; gap: 14px; }
+.farewell h2 { margin: 0; font-size: 26px; }
+.fl { min-width: 480px; }
+.fl b { font-size: 17px; }
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.split div { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.split b { font-family: var(--data); font-size: 22px; display: block; }
+.split span { color: var(--muted); font-size: 14px; }
+.split .roy b { color: #d0612f; } .split .marg b { color: #1D9E75; }
+footer { padding-block: 32px 48px; font-size: 12.5px; color: var(--muted); }
+footer h2 { font-size: 15px; font-family: var(--body); margin: 0 0 6px; color: var(--fg); }
+footer ul { margin: 0 0 12px; padding-left: 18px; display: grid; gap: 2px; }
+footer li span { color: var(--fg); }
+@media (max-width: 760px) {
+.cover { grid-template-columns: 1fr; padding-block: 28px 16px; }
+.day { grid-template-columns: 1fr; }
+.day:nth-child(odd) .photo { order: 0; }
+.photo { min-height: 0; aspect-ratio: 4 / 3; max-width: 100%; }
+.body { padding: 18px 18px 18px; }
+.stats { grid-template-columns: auto auto; }
+.stats .via { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+.tabs{background:var(--card);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;padding-block:8px}
+.tabs a{text-decoration:none;color:var(--muted);font-weight:500;padding:6px 14px;border-radius:999px;font-size:15px}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+
+
+.hero2{padding-block:36px 6px}
+.hero2 h1{font-family:var(--display);font-weight:900;font-size:clamp(32px,5vw,52px);line-height:1.15;margin:8px 0 10px}
+.sec{padding-block:24px 6px}
+.sec h2{font-family:var(--display);font-weight:900;font-size:26px;margin:0 0 12px}
+#map{height:min(70vh,620px);border-radius:14px;border:1px solid var(--line);background:var(--tint)}
+.mapbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:10px 0;font-size:13.5px;color:var(--muted)}
+.mapbar i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:middle;margin-right:6px;opacity:.75}
+.btn{display:inline-block;background:var(--accent);color:var(--card)!important;text-decoration:none;font-weight:600;border-radius:999px;padding:8px 16px;font-size:14px}
+.btn.ghost{background:transparent;color:var(--accent)!important;border:1px solid var(--accent)}
+.zb{display:inline-block;border-radius:999px;padding:1px 10px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.zb.red{background:#d83b3b;color:#fff}.zb.orange{background:#f0a030;color:#1b1b1b}.zb.green{background:#3cb55a;color:#fff}.zb.none{background:var(--tint);color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.card h3{margin:0 0 8px;font-size:16px}
+.card ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
+.tablebox table{min-width:760px}
+.tablebox td:first-child{white-space:nowrap}
+.status{font-size:13px;color:var(--muted)}
+.leaflet-popup-content{font-family:var(--body);font-size:13px}
+</style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html">航班</a><a href="motorhome.html">露營車</a><a href="drone.html" aria-current="page">空拍機</a></div></nav>
+<div class="wrap">
+  <header class="hero2">
+    <p class="eyebrow">Drone · DOC drone zones</p>
+    <h1>空拍機飛行限制</h1>
+    <p class="lede">紐西蘭的國家公園與保育地（DOC 土地）起飛、降落或懸停都要有 DOC 許可。我們沿途的冰河、峽灣、庫克山幾乎都是紅區，基本上不能飛。下面地圖的資料直接來自 DOC 的無人機分區圖層。</p>
+    <p style="display:flex;flex-wrap:wrap;gap:8px"><a class="btn" href="https://www.doc.govt.nz/map/index.html?banner=0&amp;layerlist=0&amp;base=Map&amp;layers=recreation%20drone" target="_blank" rel="noopener">開啟 DOC 官方地圖 ↗</a><a class="btn ghost" href="https://www.doc.govt.nz/get-involved/apply-for-permits/all-permissions/drone-use-on-conservation-land/recreational-drone-use/" target="_blank" rel="noopener">申請許可 ↗</a><a class="btn ghost" href="https://www.airshare.co.nz/" target="_blank" rel="noopener">Airshare 空域查詢 ↗</a></p>
+  </header>
+
+  <section class="sec" style="padding-top:6px">
+    <h2>無人機分區地圖（娛樂用途）</h2>
+    <div class="mapbar"><span><i style="background:#d83b3b"></i>紅區：幾乎不核准</span><span><i style="background:#f0a030"></i>橘區：個案審核</span><span><i style="background:#3cb55a"></i>綠區：線上自動核准</span><span><i style="background:#fff;border:1px solid var(--muted)"></i>空白：非 DOC 土地（仍要遵守 CAA 規定）</span><span class="status" id="status">載入 DOC 圖層中…</span></div>
+    <div id="map" role="img" aria-label="DOC 無人機分區地圖，標示行程沿途景點"></div>
+    <p class="status">放大到城鎮層級會載入更細的區塊；圓點是行程中的景點，點一下看分區。官方 DOC 網站不允許嵌入，這張是用 DOC 公開的分區資料重新繪製的。</p>
+  </section>
+
+  <section class="sec">
+    <h2>行程沿途景點的分區</h2>
+    <div class="tablebox"><table>
+      <thead><tr><th>天</th><th>景點</th><th>分區</th><th>土地</th><th>備註</th></tr></thead>
+      <tbody><tr><td class="num">Day 2</td><td>Castle Hill / Kura Tāwhiti</td><td><span class="zb red">紅區</span></td><td>Kura Tāwhiti Scenic Reserve</td><td>石灰岩區是保護區，不能飛</td></tr><tr><td class="num">Day 2</td><td>Arthur's Pass 村</td><td><span class="zb none">非 DOC 土地</span></td><td>村莊（非 DOC 土地）</td><td>四周都是國家公園紅區，起飛點與飛行範圍都不能進入</td></tr><tr><td class="num">Day 2</td><td>Otira Viaduct 觀景台</td><td><span class="zb red">紅區</span></td><td>Arthur's Pass National Park</td><td></td></tr><tr><td class="num">Day 3</td><td>Franz Josef 冰河谷</td><td><span class="zb red">紅區</span></td><td>Westland Tai Poutini National Park</td><td>冰河上空有大量直升機與小飛機，千萬不要飛</td></tr><tr><td class="num">Day 3</td><td>Lake Matheson</td><td><span class="zb red">紅區</span></td><td>Westland Tai Poutini National Park</td><td>停車場也是紅區</td></tr><tr><td class="num">Day 4</td><td>Knights Point</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地</td><td>路邊觀景台，起飛前確認土地與 Airshare</td></tr><tr><td class="num">Day 4</td><td>Ship Creek</td><td><span class="zb orange">橘區</span></td><td>Cook River–Haast River 保育區</td><td>需個案申請，至少 NZ$2,450</td></tr><tr><td class="num">Day 4</td><td>Thunder Creek Falls</td><td><span class="zb orange">橘區</span></td><td>Cook River–Haast River 保育區</td><td>需個案申請</td></tr><tr><td class="num">Day 4</td><td>Blue Pools</td><td><span class="zb red">紅區</span></td><td>Mount Aspiring National Park</td><td></td></tr><tr><td class="num">Day 5</td><td>That Wanaka Tree / Mt Iron</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地（地方政府）</td><td>湖邊是熱門空拍點，遵守 CAA 規定與 QLDC 公園規範，人多時不要飛</td></tr><tr><td class="num">Day 6</td><td>Kawarau Bridge</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地（私人營業場所）</td><td>彈跳場上空不要飛；先查 Airshare 是否在皇后鎮管制空域內</td></tr><tr><td class="num">Day 7</td><td>皇后鎮市區 / Skyline</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地</td><td>皇后鎮機場管制空域，需 Airways 許可，實際上不建議飛</td></tr><tr><td class="num">Day 8</td><td>Te Anau 湖畔</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地</td><td>鎮上可在 CAA 規定內飛，注意水上飛機起降</td></tr><tr><td class="num">Day 9</td><td>Mirror Lakes</td><td><span class="zb orange">橘區</span></td><td>Snowdon Forest 保育區</td><td>需個案申請</td></tr><tr><td class="num">Day 9</td><td>The Chasm / Milford Sound</td><td><span class="zb red">紅區</span></td><td>Fiordland National Park</td><td>Milford 有機場和大量觀光飛機，不能飛</td></tr><tr><td class="num">Day 11</td><td>Hooker Valley / Tasman Glacier</td><td><span class="zb red">紅區</span></td><td>Aoraki/Mount Cook National Park</td><td>附近有 Mt Cook 機場</td></tr><tr><td class="num">Day 11</td><td>Peter's Lookout（Lake Pukaki）</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地（路邊）</td><td>路邊停車點，注意車流</td></tr><tr><td class="num">Day 12</td><td>Tekapo 教堂 / Mt John</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地</td><td>教堂與天文台是私人土地，需地主同意；夜間禁飛</td></tr><tr><td class="num">Day 13</td><td>Elephant Rocks</td><td><span class="zb none">非 DOC 土地</span></td><td>私人農地</td><td>需地主同意</td></tr><tr><td class="num">Day 13</td><td>Oamaru 藍企鵝區</td><td><span class="zb none">非 DOC 土地</span></td><td>非 DOC 土地</td><td>野生動物區，不要飛</td></tr><tr><td class="num">Day 14</td><td>Moeraki Boulders</td><td><span class="zb red">紅區</span></td><td>Moeraki Boulders/Kaihinaki Scenic Reserve</td><td></td></tr></tbody>
+    </table></div>
+    <p class="status">分區查自 DOC Drone_Zones 圖層（2026 年 10 月），出發前請再到官方地圖確認。</p>
+  </section>
+
+  <section class="sec">
+    <h2>規則重點</h2>
+    <div class="cards">
+      <div class="card"><h3>DOC 許可（保育地）</h3><ul>
+        <li>綠區：線上申請，立即核發，NZ$180 + GST，效期一年</li>
+        <li>橘區：個案審核，至少 NZ$2,450 + GST</li>
+        <li>紅區：很少核准，至少 NZ$180 + GST，約 5 個工作天</li>
+        <li>飛行時要帶著許可（電子或紙本）</li></ul></div>
+      <div class="card"><h3>民航局 CAA 基本規定</h3><ul>
+        <li>高度 120 m 以下，保持目視範圍內</li>
+        <li>只在白天飛</li>
+        <li>機場 4 km 內不能飛；管制空域要先取得許可</li>
+        <li>飛越別人或私人土地前要先取得同意</li></ul></div>
+      <div class="card"><h3>我們的實際做法</h3><ul>
+        <li>冰河、Milford、庫克山、Blue Pools：不飛</li>
+        <li>Wanaka 湖邊、Te Anau 鎮上：可在 CAA 規定內飛</li>
+        <li>皇后鎮：機場管制區，不飛</li>
+        <li>起飛前用 Airshare 查空域，避開人群與野生動物</li></ul></div>
+    </div>
+  </section>
+</div>
+<footer class="wrap"><p>分區資料：Department of Conservation（DOC）Drone_Zones 圖層。底圖 © OpenStreetMap contributors。規則以 DOC 與 CAA 最新公告為準。</p></footer>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var SPOTS = [["Castle Hill / Kura Tāwhiti", -43.229, 171.719, "RED", "Kura Tāwhiti Scenic Reserve", "石灰岩區是保護區，不能飛", 2], ["Arthur's Pass 村", -42.94, 171.562, "NONE", "村莊（非 DOC 土地）", "四周都是國家公園紅區，起飛點與飛行範圍都不能進入", 2], ["Otira Viaduct 觀景台", -42.857, 171.57, "RED", "Arthur's Pass National Park", "", 2], ["Franz Josef 冰河谷", -43.432, 170.18, "RED", "Westland Tai Poutini National Park", "冰河上空有大量直升機與小飛機，千萬不要飛", 3], ["Lake Matheson", -43.442, 169.965, "RED", "Westland Tai Poutini National Park", "停車場也是紅區", 3], ["Knights Point", -43.712, 169.226, "NONE", "非 DOC 土地", "路邊觀景台，起飛前確認土地與 Airshare", 4], ["Ship Creek", -43.763, 169.15, "ORANGE", "Cook River–Haast River 保育區", "需個案申請，至少 NZ$2,450", 4], ["Thunder Creek Falls", -43.958, 169.214, "ORANGE", "Cook River–Haast River 保育區", "需個案申請", 4], ["Blue Pools", -44.106, 169.262, "RED", "Mount Aspiring National Park", "", 4], ["That Wanaka Tree / Mt Iron", -44.698, 169.135, "NONE", "非 DOC 土地（地方政府）", "湖邊是熱門空拍點，遵守 CAA 規定與 QLDC 公園規範，人多時不要飛", 5], ["Kawarau Bridge", -45.007, 168.856, "NONE", "非 DOC 土地（私人營業場所）", "彈跳場上空不要飛；先查 Airshare 是否在皇后鎮管制空域內", 6], ["皇后鎮市區 / Skyline", -45.031, 168.645, "NONE", "非 DOC 土地", "皇后鎮機場管制空域，需 Airways 許可，實際上不建議飛", 7], ["Te Anau 湖畔", -45.414, 167.718, "NONE", "非 DOC 土地", "鎮上可在 CAA 規定內飛，注意水上飛機起降", 8], ["Mirror Lakes", -45.143, 168.003, "ORANGE", "Snowdon Forest 保育區", "需個案申請", 9], ["The Chasm / Milford Sound", -44.784, 167.991, "RED", "Fiordland National Park", "Milford 有機場和大量觀光飛機，不能飛", 9], ["Hooker Valley / Tasman Glacier", -43.717, 170.093, "RED", "Aoraki/Mount Cook National Park", "附近有 Mt Cook 機場", 11], ["Peter's Lookout（Lake Pukaki）", -44.086, 170.185, "NONE", "非 DOC 土地（路邊）", "路邊停車點，注意車流", 11], ["Tekapo 教堂 / Mt John", -44.005, 170.481, "NONE", "非 DOC 土地", "教堂與天文台是私人土地，需地主同意；夜間禁飛", 12], ["Elephant Rocks", -44.908, 170.646, "NONE", "私人農地", "需地主同意", 13], ["Oamaru 藍企鵝區", -45.11, 170.977, "NONE", "非 DOC 土地", "野生動物區，不要飛", 13], ["Moeraki Boulders", -45.345, 170.826, "RED", "Moeraki Boulders/Kaihinaki Scenic Reserve", "", 14]];
+  var COL = {RED:'#d83b3b', ORANGE:'#f0a030', GREEN:'#3cb55a'};
+  var ZN = {RED:'紅區', ORANGE:'橘區', GREEN:'綠區', NONE:'非 DOC 土地'};
+  var map = L.map('map', {scrollWheelZoom:false}).setView([-44.2, 170.0], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:17, attribution:'© OpenStreetMap contributors · Zones © DOC'}).addTo(map);
+  var Q = 'https://services1.arcgis.com/3JjYDyG3oajxU6HO/ArcGIS/rest/services/Drone_Zones/FeatureServer/2/query';
+  function style(f){ var z=(f.properties.recreational_zoning||'').toUpperCase(); return {color:COL[z]||'#888', weight:1, fillColor:COL[z]||'#888', fillOpacity:.45}; }
+  function pop(f,l){ var z=(f.properties.recreational_zoning||'').toUpperCase(); l.bindPopup('<b>'+f.properties.Name+'</b><br>'+(ZN[z]||z)); }
+  var coarse = L.geoJSON(null, {style:style, onEachFeature:pop}).addTo(map);
+  var fine = L.geoJSON(null, {style:style, onEachFeature:pop}).addTo(map);
+  var st = document.getElementById('status');
+  function url(where, bbox, off){ return Q+'?where='+encodeURIComponent(where)+'&geometry='+bbox+'&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Name,recreational_zoning&outSR=4326&maxAllowableOffset='+off+'&geometryPrecision=4&resultRecordCount=2000&f=geojson'; }
+  fetch(url('Shape__Area>5000000','166,-47.5,174.5,-40.4',0.01)).then(function(r){return r.json();}).then(function(j){ coarse.addData(j); st.textContent='DOC 圖層已載入'; }).catch(function(){ st.textContent='DOC 圖層載入失敗，請改用官方地圖'; });
+  var last='';
+  map.on('moveend', function(){
+    if (map.getZoom() < 10) { fine.clearLayers(); last=''; return; }
+    var b = map.getBounds(); var bb=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()].map(function(v){return v.toFixed(3);}).join(',');
+    if (bb===last) return; last=bb; st.textContent='載入細部區塊…';
+    fetch(url('1=1', bb, 0.0003)).then(function(r){return r.json();}).then(function(j){ fine.clearLayers(); fine.addData(j); st.textContent='DOC 圖層已載入'; }).catch(function(){ st.textContent='細部載入失敗'; });
+  });
+  SPOTS.forEach(function(s){
+    var c = COL[s[3]] || '#555';
+    L.circleMarker([s[1], s[2]], {radius:7, color:'#fff', weight:2, fillColor:c, fillOpacity:1}).addTo(map)
+      .bindPopup('<b>Day '+s[6]+' · '+s[0]+'</b><br>'+ZN[s[3]]+' · '+s[4]+(s[5]?'<br>'+s[5]:''));
+  });
+})();
+</script>
+</body></html>
