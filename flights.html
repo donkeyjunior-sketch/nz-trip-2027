@@ -215,6 +215,23 @@ footer li span { color: var(--fg); }
 .icard ul{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
 .icard li span{color:var(--muted)}
 .tablebox table{min-width:640px}
+.dspec{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px 20px;margin:0 0 16px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dspec div{display:flex;flex-direction:column}
+.dspec dt{font-size:12px;color:var(--muted);letter-spacing:.06em}
+.dspec dd{margin:0;font-family:var(--data);font-size:22px;font-weight:700;line-height:1.2}
+.dspec dd small{font-size:13px;font-weight:500;color:var(--muted)}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px}
+.seatrow{display:grid;grid-template-columns:repeat(3,1fr) 22px repeat(3,1fr);gap:6px;margin:6px 0 10px}
+.seat{border-radius:10px 10px 6px 6px;border:1.5px solid var(--line);padding:8px 2px 6px;text-align:center;display:flex;flex-direction:column;gap:2px;min-width:0}
+.seat b{font-family:var(--data);font-size:18px;line-height:1}
+.seat span{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat.fam{background:#1D9E75;border-color:#1D9E75;color:#fff}.seat.fam span{color:#fff}
+.seat.roy{background:#d0612f;border-color:#d0612f;color:#fff}.seat.roy span{color:#fff}
+.seat.empty{opacity:.55}
+.aisle{border-left:2px dashed var(--line);margin:4px auto;width:0}
+.snote{font-size:13px;color:var(--muted);margin:0}
+.tablebox.dt table{min-width:0;font-size:14px}
+.tablebox.dt th,.tablebox.dt td{padding:7px 10px}
 </style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html" aria-current="page">航班</a><a href="motorhome.html">露營車</a><a href="drone.html">空拍機</a></div></nav>
 <div class="wrap">
   <header class="hero2">
@@ -261,7 +278,7 @@ footer li span { color: var(--fg); }
     
     <li><span class="tm num">15:35</span><div><b>AKL 奧克蘭（國內線）</b></div></li>
   </ol>
-  <ul class="fnotes"><li>托運行李 <b>2 件 × 23 kg</b>（另外 2 人只有座位，無托運）</li><li>當天上午還車，12:10 前到機場報到</li><li>訂位顯示 4 adults，確認孩子的姓名與證件資料正確</li></ul>
+  <ul class="fnotes"><li>座位 15C · 15D · 15E · 15F（已選位）</li><li>托運行李 <b>2 件 × 23 kg</b>（Roy、Marg 各 1 件）</li><li>當天上午還車，12:10 前到機場報到；起飛前 24 小時開放線上報到</li></ul>
 </article><article class="fcard">
   <header><span class="fno">航班 3</span><span class="who roy">Roy</span><span class="fdate">7/10（六）</span></header>
   <p class="carrier">中華航空 CI054 · Airbus A350-900 · <span class="num">14h10，經布里斯本停留 1h30</span></p>
@@ -274,12 +291,63 @@ footer li span { color: var(--fg); }
 </article></div>
   </section>
 
+
+  <section class="sec" id="nz550">
+    <h2>國內線細節 · NZ550</h2>
+    <p class="lede2">7/10（六）基督城 → 奧克蘭，全家 4 人同一張訂位。資料取自 Air New Zealand 訂位管理頁（2026/10/20）。</p>
+    <dl class="dspec">
+      <div><dt>航班</dt><dd>NZ550</dd></div>
+      <div><dt>出發 → 抵達</dt><dd>14:10 → 15:35</dd></div>
+      <div><dt>飛行</dt><dd>1h25 <small>直飛</small></dd></div>
+      <div><dt>機型</dt><dd>A320</dd></div>
+      <div><dt>艙等</dt><dd>經濟艙 <small>(P)</small></dd></div>
+      <div><dt>餐點</dt><dd>飲料 + 點心</dd></div>
+    </dl>
+    <div class="dgrid">
+      <div class="icard">
+        <h3>座位 · 第 15 排</h3>
+        <div class="seatrow" role="img" aria-label="第 15 排座位：C 走道 Roy；走道另一側 D 走道 Marg、E 中間孩子、F 靠窗孩子">
+          <div class="seat empty"><b>A</b><span>&nbsp;</span></div>
+          <div class="seat empty"><b>B</b><span>&nbsp;</span></div>
+          <div class="seat roy"><b>C</b><span>Roy</span></div>
+          <div class="aisle" aria-hidden="true"></div>
+          <div class="seat fam"><b>D</b><span>Marg</span></div>
+          <div class="seat fam"><b>E</b><span>孩子</span></div>
+          <div class="seat fam"><b>F</b><span>孩子</span></div>
+        </div>
+        <p class="snote">Marg 和兩個孩子坐同一側 D–E–F；Roy 坐走道另一側的 C。A、F 靠窗。</p>
+      </div>
+      <div class="icard">
+        <h3>乘客、行李與餐點</h3>
+        <div class="tablebox dt"><table>
+          <thead><tr><th>乘客</th><th>座位</th><th>托運</th><th>餐點</th></tr></thead>
+          <tbody>
+            <tr><td>Roy</td><td class="num">15C</td><td>1 件 23 kg</td><td>飲料 + 點心</td></tr>
+            <tr><td>Marg</td><td class="num">15D</td><td>1 件 23 kg</td><td>飲料 + 點心</td></tr>
+            <tr><td>孩子</td><td class="num">15E</td><td>無</td><td>飲料 + 點心</td></tr>
+            <tr><td>孩子</td><td class="num">15F</td><td>無</td><td>飲料 + 點心</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="icard"><h3>費用</h3><ul>
+        <li>機票 4 張 × NZ$114 = <b>NZ$456</b><span>（票種 Mixed）</span></li>
+        <li>選位 NZ$40</li>
+        <li>刷卡手續費 NZ$9.10</li>
+        <li><b>總計 NZ$505.10</b></li></ul></div>
+      <div class="icard"><h3>要留意</h3><ul>
+        <li><b>行李</b>：全家只有 2 件托運。Marg 和孩子要在奧克蘭住一個月，行李不夠可以在訂位頁「Add a bag」加購</li>
+        <li><b>報到</b>：起飛前 24 小時開放線上報到，可用 Air NZ app 當登機證</li>
+        <li><b>Roy 的行李</b>：抵達奧克蘭後在國內線領行李，再到國際航廈托運 CI054</li>
+        <li><b>乘客資料</b>：4 人都登記為成人，確認孩子的名字與護照一致</li></ul></div>
+    </div>
+  </section>
+
   <section class="sec">
     <h2>相關訊息</h2>
     <div class="info">
       <div class="icard"><h3>托運行李</h3><ul>
         <li>新航（6/25）：國際線托運額度依票種，出發前確認</li>
-        <li>NZ550（7/10）：<b>2 件 × 23 kg</b><span>，另 2 人沒有托運額度</span></li>
+        <li>NZ550（7/10）：<b>2 件 × 23 kg</b><span>（Roy、Marg 各 1 件），孩子沒有托運額度</span></li>
         <li>CI054（Roy）：依中華航空票種</li>
         <li>露營車上的寢具與廚具不用帶</li></ul></div>
       <div class="icard"><h3>轉機注意</h3><ul>
