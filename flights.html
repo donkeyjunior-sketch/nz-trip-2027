@@ -449,6 +449,16 @@ footer li span { color: var(--fg); }
 </div>
 <footer class="wrap"><p>時間為當地時間；台灣比紐西蘭慢 4 小時。航班資訊以航空公司電子機票為準。</p></footer>
 <style>
+/* unified page header + section headings (all tabs) */
+.cover,.hero,.hero2{padding-top:36px!important;align-items:start!important}
+.cover h1,.hero h1,.hero2 h1{font-size:clamp(32px,5vw,52px)!important;line-height:1.15!important;margin:8px 0 10px!important}
+.cover h1 small{font-size:.4em!important;margin-top:8px!important}
+.cover .lede,.hero .lede,.hero2 .lede{font-size:16px;color:var(--muted);max-width:40em;margin:0 0 20px}
+.block,.sec{padding-block:32px 6px!important}
+.block>h2,.sec>h2{font-family:var(--display);font-weight:900;font-size:26px!important;line-height:1.3;margin:0 0 14px!important}
+.block>h2+.lede2,.sec>h2+.lede2{margin-top:-8px!important}
+.lede2{font-size:14.5px!important;color:var(--muted)!important;max-width:44em;margin:0 0 16px!important}
+@media (max-width:760px){.cover,.hero,.hero2{padding-top:24px!important}.block,.sec{padding-block:26px 4px!important}.block>h2,.sec>h2{font-size:23px!important}}
 #totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
 #totop.show{opacity:.92;transform:none;pointer-events:auto}
 #totop:hover,#totop:focus-visible{opacity:1}

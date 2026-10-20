@@ -179,7 +179,7 @@ footer li span { color: var(--fg); }
   <header class="hero">
     <div>
       <p class="eyebrow">Pacific Horizon · Premium SAM 6</p>
-      <h1>我們的<br>移動的家</h1>
+      <h1>我們的移動的家</h1>
       <p class="lede">Mercedes-Benz 底盤、紐西蘭在地打造的 6 人座豪華露營車。柴油暖氣、雙層玻璃、獨立衛浴，冬天也能住得溫暖。</p>
       <span class="status"><b>預訂狀態</b> 已付訂金（10/20）· 尾款 2027/5/29 前付清</span>
     </div>
@@ -356,6 +356,16 @@ footer li span { color: var(--fg); }
   <p>車輛規格、照片與平面圖來源：<a href="https://pacifichorizon.co.nz/wellington-campervan-hire/sam-campervans-for-hire/">Pacific Horizon · SAM 6</a>。照片與平面圖版權屬於 Pacific Horizon。</p>
 </footer>
 <style>
+/* unified page header + section headings (all tabs) */
+.cover,.hero,.hero2{padding-top:36px!important;align-items:start!important}
+.cover h1,.hero h1,.hero2 h1{font-size:clamp(32px,5vw,52px)!important;line-height:1.15!important;margin:8px 0 10px!important}
+.cover h1 small{font-size:.4em!important;margin-top:8px!important}
+.cover .lede,.hero .lede,.hero2 .lede{font-size:16px;color:var(--muted);max-width:40em;margin:0 0 20px}
+.block,.sec{padding-block:32px 6px!important}
+.block>h2,.sec>h2{font-family:var(--display);font-weight:900;font-size:26px!important;line-height:1.3;margin:0 0 14px!important}
+.block>h2+.lede2,.sec>h2+.lede2{margin-top:-8px!important}
+.lede2{font-size:14.5px!important;color:var(--muted)!important;max-width:44em;margin:0 0 16px!important}
+@media (max-width:760px){.cover,.hero,.hero2{padding-top:24px!important}.block,.sec{padding-block:26px 4px!important}.block>h2,.sec>h2{font-size:23px!important}}
 #totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
 #totop.show{opacity:.92;transform:none;pointer-events:auto}
 #totop:hover,#totop:focus-visible{opacity:1}
