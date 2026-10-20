@@ -293,4 +293,58 @@ footer li span { color: var(--fg); }
 function u(){b.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>400)}
 window.addEventListener('scroll',u,{passive:true});u();
 b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
+</script><style>
+/* left sidebar navigation (replaces top tabs) */
+:root{--sidew:212px;--sidew-c:64px;--topbar:52px}
+body:has(nav.tabs){padding-left:var(--sidew);transition:padding-left .2s}
+body.side-collapsed:has(nav.tabs){padding-left:var(--sidew-c)}
+body nav.tabs{position:fixed;top:0;left:0;bottom:0;width:var(--sidew);z-index:60;background:var(--card);border-bottom:0;border-right:1px solid var(--line);overflow-y:auto;overflow-x:hidden;transition:width .2s,transform .22s}
+body.side-collapsed nav.tabs{width:var(--sidew-c)}
+body nav.tabs .wrap{display:flex;flex-direction:column;gap:4px;max-width:none;margin:0;padding:68px 10px 16px}
+body nav.tabs a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;font-size:15px;line-height:1.2;white-space:nowrap;color:var(--muted);text-decoration:none;font-weight:500}
+body nav.tabs a:hover{background:var(--tint);color:var(--fg)}
+body nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+body nav.tabs a svg{flex:0 0 20px;width:20px;height:20px}
+body.side-collapsed nav.tabs a{justify-content:center;padding:10px 0}
+body.side-collapsed nav.tabs a .lab{display:none}
+.side-brand{position:fixed;top:0;left:0;z-index:61;height:60px;display:flex;align-items:center;gap:10px;padding:0 12px;width:var(--sidew);transition:width .2s;pointer-events:none}
+body.side-collapsed .side-brand{width:var(--sidew-c)}
+.side-brand b{font-family:var(--display);font-weight:900;font-size:16px;color:var(--fg);white-space:nowrap;overflow:hidden;padding-left:46px}
+body.side-collapsed .side-brand b{display:none}
+#sidetoggle{position:fixed;top:12px;left:12px;z-index:62;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+#sidetoggle:hover{background:var(--tint)}
+#sidetoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#sidetoggle svg{width:20px;height:20px}
+#sidebackdrop{display:none}
+.side-cur{display:none}
+@media (max-width:900px){
+  body:has(nav.tabs),body.side-collapsed:has(nav.tabs){padding-left:0;padding-top:var(--topbar)}
+  body nav.tabs,body.side-collapsed nav.tabs{width:250px;transform:translateX(-100%);box-shadow:none;padding-top:env(safe-area-inset-top,0px)}
+  body.side-open nav.tabs{transform:none;box-shadow:0 0 40px rgba(0,0,0,.25)}
+  body.side-collapsed nav.tabs a{justify-content:flex-start;padding:10px 12px}
+  body.side-collapsed nav.tabs a .lab{display:inline}
+  .side-brand{width:100%!important;height:var(--topbar);background:var(--card);border-bottom:1px solid var(--line);pointer-events:auto;z-index:59}
+  .side-brand b{display:block!important;padding-left:50px;font-size:15px}
+  .side-cur{display:inline;color:var(--accent);font-family:var(--body);font-weight:700;font-size:15px}
+  #sidetoggle{top:6px;left:max(10px,env(safe-area-inset-left,0px))}
+  body.side-open #sidebackdrop{display:block;position:fixed;inset:0;z-index:58;background:rgba(0,0,0,.35)}
+  body:has(nav.tabs) .nav{top:var(--topbar)}
+}
+@media print{nav.tabs,#sidetoggle,.side-brand{display:none!important}body:has(nav.tabs){padding:0!important}}
+</style>
+<div class="side-brand"><b>南島冬季之旅 2027 <span class="side-cur"></span></b></div>
+<button id="sidetoggle" type="button" aria-label="展開或收合選單" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+<div id="sidebackdrop"></div>
+<script>
+(function(){var nav=document.querySelector('nav.tabs');if(!nav)return;var b=document.body,mq=window.matchMedia('(max-width:900px)'),t=document.getElementById('sidetoggle');
+var IC={'./':'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>','flights.html':'<path d="M10.5 13.5L3 11l1.5-1.5 7 1 4-4.5c1-1 2.5-1 3 0s0 2-1 3l-4.5 4 1 7L12.5 21 10 13.5"/>','motorhome.html':'<rect x="2" y="6" width="14" height="10" rx="1.5"/><path d="M16 9h3l3 3v4h-6"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>','drone.html':'<circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="M7 7l2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/>','expenses.html':'<rect x="2.5" y="6" width="19" height="13" rx="2"/><path d="M2.5 10h19M16 14.5h2.5"/>'};
+nav.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href');var lab=a.textContent.trim();a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(IC[h]||'<circle cx="12" cy="12" r="8"/>')+'</svg><span class="lab">'+lab+'</span>';a.title=lab;if(a.getAttribute('aria-current')==='page'){var c=document.querySelector('.side-cur');if(c)c.textContent='· '+lab;}});
+function get(){try{return localStorage.getItem('sideCollapsed')==='1'}catch(e){return false}}
+function set(v){try{localStorage.setItem('sideCollapsed',v?'1':'0')}catch(e){}}
+function sync(){if(mq.matches){b.classList.remove('side-collapsed');t.setAttribute('aria-expanded',b.classList.contains('side-open'))}else{b.classList.remove('side-open');b.classList.toggle('side-collapsed',get());t.setAttribute('aria-expanded',!get())}}
+t.addEventListener('click',function(){if(mq.matches){b.classList.toggle('side-open')}else{set(!get())}sync()});
+document.getElementById('sidebackdrop').addEventListener('click',function(){b.classList.remove('side-open');sync()});
+nav.addEventListener('click',function(e){if(e.target.closest('a')&&mq.matches){b.classList.remove('side-open')}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.classList.contains('side-open')){b.classList.remove('side-open');sync();t.focus()}});
+(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));sync();})();
 </script></body></html>
