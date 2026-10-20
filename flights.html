@@ -230,6 +230,13 @@ footer li span { color: var(--fg); }
 .seat.empty{opacity:.55}
 .aisle{border-left:2px dashed var(--line);margin:4px auto;width:0}
 .snote{font-size:13px;color:var(--muted);margin:0}
+.seatrow.sm{gap:4px;margin:4px 0}
+.seatrow.sm .seat{padding:6px 1px 4px}
+.seatrow.sm .seat b{font-size:15px}
+.seatrow.sm .seat span{font-size:10.5px}
+.rno{font-family:var(--data);font-weight:700;color:var(--muted);display:flex;align-items:center;font-size:14px}
+.icard h3 small.ac{font-weight:500;color:var(--muted);font-size:12.5px;margin-left:6px}
+.icard .seatrow.sm:last-of-type{margin-bottom:10px}
 .tablebox.dt table{min-width:0;font-size:14px}
 .tablebox.dt th,.tablebox.dt td{padding:7px 10px}
 </style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html" aria-current="page">航班</a><a href="motorhome.html">露營車</a><a href="drone.html">空拍機</a></div></nav>
@@ -269,7 +276,7 @@ footer li span { color: var(--fg); }
     <li class="mid"><span class="tm"></span><div><span class="stop">19:00 抵新加坡樟宜 → 19:50 從 T3 起飛（轉機 50 分）</span></div></li>
     <li><span class="tm num">09:30<small>+1</small></span><div><b>CHC 基督城</b></div></li>
   </ol>
-  <ul class="fnotes"><li><b>已開票</b>（2026/10/19，易遊網）；經濟艙，每人托運 <b>25 kg</b></li><li>新加坡轉機只有 50 分鐘，而且<b>要換航廈</b>（下一班在 T3）</li><li>行李直掛基督城；還沒選座位</li></ul>
+  <ul class="fnotes"><li><b>已開票</b>（2026/10/19，易遊網）；經濟艙，每人托運 <b>25 kg</b></li><li>新加坡轉機只有 50 分鐘，而且<b>要換航廈</b>（下一班在 T3）</li><li>行李直掛基督城；已選位：SQ877 54D/E · 55D/E，SQ297 59D/E · 60D/E</li></ul>
 </article><article class="fcard">
   <header><span class="fno">航班 2</span><span class="who all">全家 4 人</span><span class="fdate">7/10（六）</span></header>
   <p class="carrier">Air New Zealand NZ550 · Airbus A320 · <span class="num">1h25 直飛</span></p>
@@ -305,12 +312,22 @@ footer li span { color: var(--fg); }
       <div><dt>托運</dt><dd>25 kg <small>/ 人</small></dd></div>
     </dl>
     <div class="dgrid">
+      <div class="icard">
+        <h3>座位 · SQ877 台北 → 新加坡 <small class="ac">B787 · 3-3-3</small></h3>
+        <div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">54</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat roy"><b>E</b><span>Roy</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div><div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">55</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat fam"><b>E</b><span>Marg</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div>
+        <p class="snote">中間區 D–E 兩排一前一後：54 排 Roy＋孩子，55 排 Marg＋孩子。D 靠走道。</p>
+      </div>
+      <div class="icard">
+        <h3>座位 · SQ297 新加坡 → 基督城 <small class="ac">B777 · 3-4-3</small></h3>
+        <div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">59</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat fam"><b>E</b><span>Marg</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div><div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">60</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat roy"><b>E</b><span>Roy</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div>
+        <p class="snote">中間區 D–E 兩排一前一後：59 排 Marg＋孩子，60 排 Roy＋孩子。D 靠走道。</p>
+      </div>
       <div class="icard"><h3>行李</h3><ul>
         <li>每人托運 <b>25 kg</b>（計重制），4 人共 100 kg<span>，不限件數，但單件不能超過 32 kg</span></li>
         <li>行李直掛基督城，新加坡轉機不用領</li>
         <li><b>注意</b>：回程 NZ550 全家只有 2 件 × 23 kg，來的時候行李不要帶太多，或先在 Air NZ 加購行李</li></ul></div>
       <div class="icard"><h3>出發前要做</h3><ul>
-        <li><b>還沒選座位</b>：可到新航官網用訂位代號選位，轉機時間短，盡量選前排</li>
+        <li>座位已選好（見上方座位圖）；轉機時間短，下機後直接跟 Transfer 指標走</li>
         <li>機票要照順序使用，第 1 段沒搭，第 2 段會失效</li>
         <li>護照效期要比回程日多 6 個月以上</li>
         <li>出發前申請紐西蘭 NZeTA</li>
