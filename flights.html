@@ -230,10 +230,12 @@ footer li span { color: var(--fg); }
 .seat.empty{opacity:.55}
 .aisle{border-left:2px dashed var(--line);margin:4px auto;width:0}
 .snote{font-size:13px;color:var(--muted);margin:0}
-.seatrow.sm{gap:4px;margin:4px 0}
-.seatrow.sm .seat{padding:6px 1px 4px}
-.seatrow.sm .seat b{font-size:15px}
-.seatrow.sm .seat span{font-size:10.5px}
+.seatrow.sm{gap:3px;margin:3px 0;justify-content:start}
+.seatrow.sm .seat{padding:3px 0 2px;border-radius:7px 7px 4px 4px;border-width:1px;gap:0}
+.seatrow.sm .seat b{font-size:12.5px}
+.seatrow.sm .seat span{font-size:9.5px;line-height:1.2;overflow:visible;text-overflow:clip}
+.seatrow.sm .seat.empty span{display:none}
+.seatrow.sm .aisle{margin:2px auto}
 .rno{font-family:var(--data);font-weight:700;color:var(--muted);display:flex;align-items:center;font-size:14px}
 .icard h3 small.ac{font-weight:500;color:var(--muted);font-size:12.5px;margin-left:6px}
 .icard .seatrow.sm:last-of-type{margin-bottom:10px}
@@ -313,13 +315,13 @@ footer li span { color: var(--fg); }
     </dl>
     <div class="dgrid">
       <div class="icard">
-        <h3>座位 · SQ877 台北 → 新加坡 <small class="ac">B787 · 3-3-3</small></h3>
-        <div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">54</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat roy"><b>E</b><span>Roy</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div><div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">55</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat fam"><b>E</b><span>Marg</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div>
+        <h3>座位 · SQ877 台北 → 新加坡 <small class="ac">B787-10 · 3-3-3</small></h3>
+        <div class="seatrow sm" style="grid-template-columns:24px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px)"><div class="rno">54</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat roy"><b>E</b><span>Roy</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div><div class="seatrow sm" style="grid-template-columns:24px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px)"><div class="rno">55</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat fam"><b>E</b><span>Marg</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div>
         <p class="snote">中間區 D–E 兩排一前一後：54 排 Roy＋孩子，55 排 Marg＋孩子。D 靠走道。</p>
       </div>
       <div class="icard">
-        <h3>座位 · SQ297 新加坡 → 基督城 <small class="ac">B777 · 3-4-3</small></h3>
-        <div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">59</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat fam"><b>E</b><span>Marg</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div><div class="seatrow sm" style="grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1.9fr) minmax(0,1.9fr) minmax(0,1fr) minmax(0,1fr) 14px minmax(0,1fr) minmax(0,1fr) minmax(0,1fr)"><div class="rno">60</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat roy"><b>E</b><span>Roy</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>J</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div>
+        <h3>座位 · SQ297 新加坡 → 基督城 <small class="ac">B777-300ER · 3-3-3</small></h3>
+        <div class="seatrow sm" style="grid-template-columns:24px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px)"><div class="rno">59</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat fam"><b>E</b><span>Marg</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div><div class="seatrow sm" style="grid-template-columns:24px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px)"><div class="rno">60</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat empty"><b>C</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>孩子</span></div><div class="seat roy"><b>E</b><span>Roy</span></div><div class="seat empty"><b>F</b><span>&nbsp;</span></div><div class="aisle" aria-hidden="true"></div><div class="seat empty"><b>G</b><span>&nbsp;</span></div><div class="seat empty"><b>H</b><span>&nbsp;</span></div><div class="seat empty"><b>K</b><span>&nbsp;</span></div></div>
         <p class="snote">中間區 D–E 兩排一前一後：59 排 Marg＋孩子，60 排 Roy＋孩子。D 靠走道。</p>
       </div>
       <div class="icard"><h3>行李</h3><ul>
@@ -353,16 +355,8 @@ footer li span { color: var(--fg); }
     </dl>
     <div class="dgrid">
       <div class="icard">
-        <h3>座位 · 第 15 排</h3>
-        <div class="seatrow" role="img" aria-label="第 15 排座位：C 走道 Roy；走道另一側 D 走道 Marg、E 中間孩子、F 靠窗孩子">
-          <div class="seat empty"><b>A</b><span>&nbsp;</span></div>
-          <div class="seat empty"><b>B</b><span>&nbsp;</span></div>
-          <div class="seat roy"><b>C</b><span>Roy</span></div>
-          <div class="aisle" aria-hidden="true"></div>
-          <div class="seat fam"><b>D</b><span>Marg</span></div>
-          <div class="seat fam"><b>E</b><span>孩子</span></div>
-          <div class="seat fam"><b>F</b><span>孩子</span></div>
-        </div>
+        <h3>座位 · 第 15 排 <small class="ac">A320 · 3-3</small></h3>
+        <div class="seatrow sm" style="grid-template-columns:24px minmax(0,30px) minmax(0,30px) minmax(0,30px) 12px minmax(0,30px) minmax(0,30px) minmax(0,30px)"><div class="rno">15</div><div class="seat empty"><b>A</b><span>&nbsp;</span></div><div class="seat empty"><b>B</b><span>&nbsp;</span></div><div class="seat roy"><b>C</b><span>Roy</span></div><div class="aisle" aria-hidden="true"></div><div class="seat fam"><b>D</b><span>Marg</span></div><div class="seat fam"><b>E</b><span>孩子</span></div><div class="seat fam"><b>F</b><span>孩子</span></div></div>
         <p class="snote">Marg 和兩個孩子坐同一側 D–E–F；Roy 坐走道另一側的 C。A、F 靠窗。</p>
       </div>
       <div class="icard">
