@@ -295,6 +295,7 @@ window.addEventListener('scroll',u,{passive:true});u();
 b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
 </script><style>
 /* left sidebar navigation (replaces top tabs) */
+.leaflet-container{isolation:isolate;z-index:0}
 :root{--sidew:212px;--sidew-c:64px;--topbar:52px}
 body:has(nav.tabs){padding-left:var(--sidew);transition:padding-left .2s}
 body.side-collapsed:has(nav.tabs){padding-left:var(--sidew-c)}
