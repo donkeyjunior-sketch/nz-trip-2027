@@ -1,0 +1,310 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6f79'/%3E%3Ccircle cx='47' cy='18' r='6.5' fill='%23e8b04a'/%3E%3Cpath d='M4 54 L23 20 L33 37 L41 26 L60 54 Z' fill='%23dfeced'/%3E%3Cpath d='M23 20 L17.4 30 L21 28.6 L23.5 31.5 L26.4 28.4 L28.6 29.4 Z M41 26 L37.3 31.4 L40 30.6 L42 32.6 L44.6 30.6 Z' fill='%23fff'/%3E%3C/svg%3E">
+<title>費用 · 南島冬季之旅 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* Layout: a road-trip field journal. Cover + overview map, then one spread per day: photo left, logbook right. */
+:root {
+--bg: #eef3f4;      /* glacier paper */
+--card: #ffffff;
+--fg: #142327;
+--muted: #56686d;
+--line: #d3dde0;
+--accent: #0f6f79;  /* glacial meltwater teal */
+--warm: #a8741b;    /* tussock ochre */
+--tint: #dfeced;
+--display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+--body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+--data: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.7; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-family: var(--data); font-variant-numeric: tabular-nums; }
+/* cover */
+.cover { padding-block: 48px 24px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+.eyebrow { font-family: var(--data); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; font-size: 15px; margin: 0; }
+.cover h1 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 6vw, 64px); line-height: 1.15; margin: 8px 0 12px; text-wrap: balance; }
+.cover h1 small { display: block; font-family: var(--data); font-weight: 600; font-size: .38em; letter-spacing: .06em; color: var(--muted); margin-top: 6px; }
+.lede { color: var(--muted); max-width: 34em; margin: 0 0 20px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--data); font-size: 34px; line-height: 1; font-weight: 700; }
+.facts span { font-size: 13px; color: var(--muted); }
+.who { margin-top: 22px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+.who i { font-style: normal; display: inline-block; width: 22px; border-top: 2px solid var(--accent); vertical-align: middle; margin-right: 8px; }
+.who i.r { border-top: 2px dashed #d0612f; }
+.who i.g { border-top-color: #1D9E75; }
+.map { --p: var(--fg); --ts: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 8px; max-width: 100%; }
+.map svg { width: 100%; height: auto; display: block; }
+.map .th { font: 500 13px var(--body); fill: var(--fg); }
+.map .ts { font: 400 11.5px var(--body); fill: var(--muted); }
+.map .num { font: 700 10px var(--data); fill: #fff; }
+/* day nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: thin; }
+.nav a { flex: 0 0 auto; text-decoration: none; color: var(--fg); border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 2px 12px; display: flex; gap: 6px; align-items: baseline; font-family: var(--data); font-size: 15px; }
+.nav a b { font-weight: 700; color: var(--accent); }
+.nav a span { color: var(--muted); font-size: 13px; }
+.nav a:hover { border-color: var(--accent); }
+/* overview */
+.block { padding-block: 36px 8px; }
+.block h2, .day h2 { font-family: var(--display); font-weight: 900; text-wrap: balance; }
+.block h2 { font-size: 26px; margin: 0 0 14px; }
+.tablebox { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--data); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-size: 17px; }
+td.r, th.r { text-align: right; }
+.winter { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; margin-top: 18px; padding: 0; list-style: none; }
+.winter li { font-size: 14.5px; color: var(--muted); }
+.winter b { display: block; color: var(--fg); font-size: 15px; }
+/* day spreads */
+.days { display: grid; gap: 28px; padding-block: 28px 12px; }
+.day { scroll-margin-top: 70px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.photo { margin: 0; position: relative; background: var(--tint); min-height: 280px; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 16px 10px; font-size: 12.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+.badge { position: absolute; top: 14px; left: 14px; background: rgba(12, 28, 32, .82); color: #fff; border-radius: 10px; padding: 6px 12px; display: flex; flex-direction: column; line-height: 1.15; }
+.badge .dn { font-family: var(--data); font-weight: 700; font-size: 22px; letter-spacing: .04em; }
+.badge .dd { font-size: 12.5px; opacity: .85; }
+.body { padding: 24px 26px 22px; min-width: 0; }
+.day h2 { font-size: 26px; margin: 0; line-height: 1.3; }
+.route { font-family: var(--data); font-size: 21px; font-weight: 600; letter-spacing: .02em; margin: 4px 0 14px; color: var(--accent); }
+.route .arrow { color: var(--muted); padding: 0 2px; }
+.route .stay { font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+.stats { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 26px; margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats dt { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+.stats dd { margin: 0; }
+.stats dd.num { font-size: 26px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.stats .via dd { font-family: var(--data); font-size: 16px; line-height: 1.3; padding-top: 4px; }
+.camp { display: grid; gap: 0; margin-bottom: 14px; }
+.lbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; font-weight: 600; color: var(--warm); }
+.camp b { font-size: 17px; }
+.camp b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.camp b a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.camp .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.camp2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.cbox { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.cbox.g { border-top: 3px solid var(--warm); }
+.cbox.c { border-top: 3px solid var(--accent); }
+.cbox .clbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.cbox.g .clbl { color: var(--warm); } .cbox.c .clbl { color: var(--accent); }
+.cbox b { font-size: 15px; line-height: 1.35; }
+.cbox b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.cbox .lk { display: block; font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin: 0 0 2px; }
+.cbox .note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+@media (max-width: 480px) { .camp2 { gap: 6px; } .cbox { padding: 8px 8px; } .cbox b { font-size: 14px; } .cbox .cmeta, .cbox .note { font-size: 12px; } }
+.cmeta, .camp .cmeta { font-size: 13px; color: var(--muted); }
+.cbox .cmeta a.gr { color: var(--warm); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.gr:hover, .cbox .cmeta a.cm:hover { text-decoration: underline; }
+.camp .cmeta .star { color: var(--warm); font-weight: 600; }
+.camp .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.alt { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--tint); border-radius: 0 8px 8px 0; display: grid; }
+.alt.same { display: block; font-size: 13px; color: var(--muted); }
+.alt .albl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; color: var(--accent); margin-right: 8px; }
+.alt b { font-size: 15px; }
+.alt b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.alt .lk { font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin-left: 8px; }
+.camp .cmeta s { color: #c0392b; }
+.ctbl { min-width: 1000px; }
+.ctbl td:nth-child(1), .ctbl td:nth-child(3), .ctbl td:nth-child(8), .ctbl th { white-space: nowrap; }
+.cnote2 { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+td small { color: var(--muted); font-size: 12px; }
+.camp .note { font-size: 13.5px; color: var(--muted); }
+.body h3 { font-size: 13px; margin: 0 0 4px; font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; color: var(--warm); font-weight: 600; }
+.sights { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 0; }
+.sights li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 10px; line-height: 1.5; padding: 6px 0; border-top: 1px dashed var(--line); }
+.sights li:first-child { border-top: 0; }
+.sights time { font-family: var(--data); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+.sights li > div { display: grid; min-width: 0; }
+.sights b { font-weight: 600; font-size: 15px; }
+.sights li > div > span { font-size: 14px; color: var(--muted); }
+.sights b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.sights b a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.sights .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.tip { margin: 0; font-size: 14px; background: var(--tint); border-radius: 10px; padding: 10px 14px; }
+.tip .lbl { margin-right: 8px; color: var(--accent); }
+.day:nth-child(odd) .photo { order: 2; }
+/* farewell */
+.farewell { scroll-margin-top: 70px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px; display: grid; gap: 14px; }
+.farewell h2 { margin: 0; font-size: 26px; }
+.fl { min-width: 480px; }
+.fl b { font-size: 17px; }
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.split div { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.split b { font-family: var(--data); font-size: 22px; display: block; }
+.split span { color: var(--muted); font-size: 14px; }
+.split .roy b { color: #d0612f; } .split .marg b { color: #1D9E75; }
+footer { padding-block: 32px 48px; font-size: 12.5px; color: var(--muted); }
+footer h2 { font-size: 15px; font-family: var(--body); margin: 0 0 6px; color: var(--fg); }
+footer ul { margin: 0 0 12px; padding-left: 18px; display: grid; gap: 2px; }
+footer li span { color: var(--fg); }
+@media (max-width: 760px) {
+.cover { grid-template-columns: 1fr; padding-block: 28px 16px; }
+.day { grid-template-columns: 1fr; }
+.day:nth-child(odd) .photo { order: 0; }
+.photo { min-height: 0; aspect-ratio: 4 / 3; max-width: 100%; }
+.body { padding: 18px 18px 18px; }
+.stats { grid-template-columns: auto auto; }
+.stats .via { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+.tabs{background:var(--card);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;padding-block:8px}
+.tabs a{text-decoration:none;color:var(--muted);font-weight:500;padding:6px 14px;border-radius:999px;font-size:15px}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+
+
+.hero2{padding-block:36px 6px}
+.hero2 h1{font-family:var(--display);font-weight:900;font-size:clamp(32px,5vw,52px);line-height:1.15;margin:8px 0 10px}
+.sec{padding-block:26px 6px}
+.sec h2{font-family:var(--display);font-weight:900;font-size:26px;margin:0 0 6px}
+.lede2{color:var(--muted);margin:0 0 16px;max-width:44em;font-size:14.5px}
+.muted{color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(46%,200px),1fr));gap:10px;margin-top:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:clamp(12px,3vw,16px) clamp(12px,3vw,18px);display:flex;flex-direction:column;gap:2px}
+.kpi dt{font-size:12.5px;color:var(--muted);letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+.kpi dd{margin:0;font-family:var(--data);font-size:clamp(24px,6vw,32px);font-weight:700;line-height:1.1}
+.kpi .sub{font-size:13px;color:var(--muted);font-family:var(--data)}
+.kpi.p{border-top:4px solid var(--accent)} .kpi.d{border-top:4px solid var(--warm)} .kpi.k{border-top:4px solid var(--fg)} .kpi.t{border-top:4px dashed var(--line)}
+.meter{margin:16px 0 4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.meter .mbar{display:flex;height:14px;border-radius:999px;overflow:hidden;background:var(--tint);margin:8px 0 6px}
+.meter .mbar i{display:block;height:100%}
+.meter .mlab{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:6px}
+i.p,.dot.p{background:var(--accent)} i.d,.dot.d{background:var(--warm)} .dot.t{background:transparent;border:1.5px dashed var(--muted)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center}
+.ch{display:flex;align-items:center;gap:10px;min-width:0}
+.ch b{display:block;font-size:15.5px}.ch small{display:block;font-size:12.5px;color:var(--muted)}
+.cn{flex:0 0 auto;min-width:38px;height:38px;padding:0 6px;border-radius:10px;background:var(--tint);color:var(--accent);font-family:var(--display);font-weight:900;font-size:17px;display:flex;align-items:center;justify-content:center}
+.cn.sm{min-width:28px;height:28px;font-size:13px;border-radius:8px;margin-right:8px;display:inline-flex;vertical-align:middle}
+.ca{text-align:right;display:flex;flex-direction:column}
+.ca b{font-size:22px;line-height:1.1}.ca span{font-size:12.5px;color:var(--muted)}
+.cbar{grid-column:1/-1;display:flex;height:8px;border-radius:999px;background:var(--tint);overflow:hidden}
+.cbar i{display:block;height:100%}
+.cmeta{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--muted)}
+.upc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.uc{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warm);border-radius:12px;padding:12px 16px}
+.uc b{font-size:15.5px}.uc .num{font-size:22px;font-weight:700;display:block}.uc span{font-size:13px;color:var(--muted)}
+.grp{margin:0 0 12px}
+.grp summary{cursor:pointer;font-weight:700;font-size:16px;padding:6px 0;list-style:none}
+.grp summary::-webkit-details-marker{display:none}
+.grp summary:after{content:"▾";color:var(--muted);margin-left:8px;font-size:13px}
+.grp:not([open]) summary:after{content:"▸"}
+.et{min-width:640px}
+.et td{font-size:14px}
+.et td.note{font-size:13px;color:var(--muted)}
+.chip{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:1px 9px;white-space:nowrap}
+.chip.p{background:var(--accent);color:var(--card)} .chip.d{background:var(--warm);color:#fff} .chip.t{border:1px dashed var(--muted);color:var(--muted)}
+.howto{background:var(--tint);border-radius:12px;padding:12px 16px;font-size:14px}
+</style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html">航班</a><a href="motorhome.html">露營車</a><a href="drone.html">空拍機</a><a href="expenses.html" aria-current="page">費用</a></div></nav>
+<div class="wrap">
+  <header class="hero2">
+    <p class="eyebrow">Budget · 南島冬季之旅 2027</p>
+    <h1>旅行費用</h1>
+    <p class="lede">食、衣、住、行、育樂和其他雜支，一頁看完已經付了多少、還要付多少、哪些還沒填。更新於 2026/10/20。</p>
+  </header>
+
+  <dl class="kpis">
+    <div class="kpi p"><dt><i class="dot p"></i>已付</dt><dd class="num">NZ$1,996</dd><span class="sub">≈ NT$39,263</span></div>
+    <div class="kpi d"><dt><i class="dot d"></i>待付（已確定）</dt><dd class="num">NZ$5,472</dd><span class="sub">≈ NT$107,651 · 露營車尾款</span></div>
+    <div class="kpi k"><dt>目前已知合計</dt><dd class="num">NZ$7,468</dd><span class="sub">≈ NT$146,914 · 不含新航機票</span></div>
+    <div class="kpi t"><dt><i class="dot t"></i>待填項目</dt><dd class="num">30 <small style="font-size:16px;color:var(--muted)">/ 34</small></dd><span class="sub">金額還不知道的項目</span></div>
+  </dl>
+
+  <div class="meter" role="img" aria-label="已知費用中已付 27%">
+    <b>已知費用的付款進度</b>
+    <div class="mbar"><i class="p" style="width:26.7%"></i><i class="d" style="width:73.3%"></i></div>
+    <div class="mlab"><span><i class="dot p"></i>已付 27%</span><span><i class="dot d"></i>待付 73%</span></div>
+  </div>
+
+  <section class="sec">
+    <h2>分類</h2>
+    <p class="lede2">長條是各分類的已付（綠）與待付（黃），長度以最大的分類為基準。</p>
+    <div class="cats"><div class="cat">
+      <div class="ch"><span class="cn">行</span><div><b>交通</b><small>機票、露營車、油資</small></div></div>
+      <div class="ca"><b class="num">NZ$7,468</b><span class="num">≈ NT$146,914</span></div>
+      <div class="cbar" role="img" aria-label="交通：已付 NZ$1,996，待付 NZ$5,472，4 項待填"><i class="p" style="width:26.7%"></i><i class="d" style="width:73.3%"></i></div>
+      <div class="cmeta"><span><i class="dot p"></i>已付 NZ$1,996</span><span><i class="dot d"></i>待付 NZ$5,472</span><span><i class="dot t"></i>4 項待填</span></div>
+    </div><div class="cat">
+      <div class="ch"><span class="cn">住</span><div><b>住宿</b><small>營地 14 晚</small></div></div>
+      <div class="ca"><b class="num muted">—</b><span>待填</span></div>
+      <div class="cbar" role="img" aria-label="住宿：已付 NZ$0，待付 NZ$0，8 項待填"><i class="p" style="width:0.0%"></i><i class="d" style="width:0.0%"></i></div>
+      <div class="cmeta"><span><i class="dot p"></i>已付 NZ$0</span><span><i class="dot d"></i>待付 NZ$0</span><span><i class="dot t"></i>8 項待填</span></div>
+    </div><div class="cat">
+      <div class="ch"><span class="cn">食</span><div><b>餐飲</b><small>超市、外食</small></div></div>
+      <div class="ca"><b class="num muted">—</b><span>待填</span></div>
+      <div class="cbar" role="img" aria-label="餐飲：已付 NZ$0，待付 NZ$0，3 項待填"><i class="p" style="width:0.0%"></i><i class="d" style="width:0.0%"></i></div>
+      <div class="cmeta"><span><i class="dot p"></i>已付 NZ$0</span><span><i class="dot d"></i>待付 NZ$0</span><span><i class="dot t"></i>3 項待填</span></div>
+    </div><div class="cat">
+      <div class="ch"><span class="cn">衣</span><div><b>衣物裝備</b><small>保暖、防水、冰爪</small></div></div>
+      <div class="ca"><b class="num muted">—</b><span>待填</span></div>
+      <div class="cbar" role="img" aria-label="衣物裝備：已付 NZ$0，待付 NZ$0，4 項待填"><i class="p" style="width:0.0%"></i><i class="d" style="width:0.0%"></i></div>
+      <div class="cmeta"><span><i class="dot p"></i>已付 NZ$0</span><span><i class="dot d"></i>待付 NZ$0</span><span><i class="dot t"></i>4 項待填</span></div>
+    </div><div class="cat">
+      <div class="ch"><span class="cn">育樂</span><div><b>活動門票</b><small>高空彈跳、遊船、觀星</small></div></div>
+      <div class="ca"><b class="num muted">—</b><span>待填</span></div>
+      <div class="cbar" role="img" aria-label="活動門票：已付 NZ$0，待付 NZ$0，8 項待填"><i class="p" style="width:0.0%"></i><i class="d" style="width:0.0%"></i></div>
+      <div class="cmeta"><span><i class="dot p"></i>已付 NZ$0</span><span><i class="dot d"></i>待付 NZ$0</span><span><i class="dot t"></i>8 項待填</span></div>
+    </div><div class="cat">
+      <div class="ch"><span class="cn">其他</span><div><b>其他</b><small>保險、簽證、雜支</small></div></div>
+      <div class="ca"><b class="num muted">—</b><span>待填</span></div>
+      <div class="cbar" role="img" aria-label="其他：已付 NZ$0，待付 NZ$0，3 項待填"><i class="p" style="width:0.0%"></i><i class="d" style="width:0.0%"></i></div>
+      <div class="cmeta"><span><i class="dot p"></i>已付 NZ$0</span><span><i class="dot d"></i>待付 NZ$0</span><span><i class="dot t"></i>3 項待填</span></div>
+    </div></div>
+  </section>
+
+  <section class="sec">
+    <h2>接下來要付</h2>
+    <div class="upc">
+      <div class="uc"><b>露營車尾款</b><span class="num">NZ$5,472</span><span>2027/5/29 前 · 銀行轉帳可省 3% 刷卡費（約 NZ$164）</span></div>
+      <div class="uc"><b>Marg + 孩子回台機票</b><span class="num muted">—</span><span>約 8 月出發，還沒訂</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>明細</h2>
+    <details class="grp" open><summary><span class="cn sm">行</span>交通</summary>
+      <div class="tablebox"><table class="et"><thead><tr><th>項目</th><th>狀態</th><th class="r">NZD</th><th class="r">約 TWD</th><th>備註</th></tr></thead><tbody><tr><td>新航 SQ877 / SQ297 · 全家 4 人</td><td><span class="chip p">已付</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">已開票（10/19 易遊網），金額待補</td></tr><tr><td>Air NZ NZ550 · 全家 4 人</td><td><span class="chip p">已付</span></td><td class="num r">NZ$505.11</td><td class="num r muted">NT$9,937</td><td class="note">含選位 NZ$40</td></tr><tr><td>華航 CI054 · Roy</td><td><span class="chip p">已付</span></td><td class="num r">NZ$864.43</td><td class="num r muted">NT$17,006</td><td class="note">實付 NT$17,006</td></tr><tr><td>Marg + 孩子 奧克蘭 → 台北</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">約 8 月，還沒訂</td></tr><tr><td>露營車 · 訂金</td><td><span class="chip p">已付</span></td><td class="num r">NZ$626.24</td><td class="num r muted">NT$12,320</td><td class="note">10/20 刷卡（NZ$608 + 3% 手續費）</td></tr><tr><td>露營車 · 尾款</td><td><span class="chip d">待付</span></td><td class="num r">NZ$5,472</td><td class="num r muted">NT$107,651</td><td class="note">2027/5/29 前付清；銀行轉帳免 3%</td></tr><tr><td>柴油</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">全程約 2,200 km</td></tr><tr><td>NZ550 加購行李</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">視需要</td></tr></tbody></table></div></details><details class="grp" open><summary><span class="cn sm">住</span>住宿</summary>
+      <div class="tablebox"><table class="et"><thead><tr><th>項目</th><th>狀態</th><th class="r">NZD</th><th class="r">約 TWD</th><th>備註</th></tr></thead><tbody><tr><td>基督城 · 2 晚（6/26、7/9）</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Franz Josef · 2 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Wanaka · 2 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Queenstown · 2 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Te Anau · 2 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Mt Cook（Glentanner）· 1 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Tekapo · 2 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>Oamaru · 1 晚</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr></tbody></table></div></details><details class="grp" open><summary><span class="cn sm">食</span>餐飲</summary>
+      <div class="tablebox"><table class="et"><thead><tr><th>項目</th><th>狀態</th><th class="r">NZD</th><th class="r">約 TWD</th><th>備註</th></tr></thead><tbody><tr><td>超市採買</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">Countdown / New World / Pak’nSave</td></tr><tr><td>外食</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>咖啡、點心</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr></tbody></table></div></details><details class="grp" open><summary><span class="cn sm">衣</span>衣物裝備</summary>
+      <div class="tablebox"><table class="et"><thead><tr><th>項目</th><th>狀態</th><th class="r">NZD</th><th class="r">約 TWD</th><th>備註</th></tr></thead><tbody><tr><td>保暖衣物（中層、毛帽、手套）</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>防水外套與褲子</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>冰爪 × 4</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>防水登山鞋</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr></tbody></table></div></details><details class="grp" open><summary><span class="cn sm">育樂</span>活動門票</summary>
+      <div class="tablebox"><table class="et"><thead><tr><th>項目</th><th>狀態</th><th class="r">NZD</th><th class="r">約 TWD</th><th>備註</th></tr></thead><tbody><tr><td>Kawarau Bridge Bungy</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/1</td></tr><tr><td>Nevis Swing</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/2</td></tr><tr><td>雪場 / 滑雪課</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">6/30</td></tr><tr><td>Skyline 纜車 + Luge</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/2</td></tr><tr><td>Te Anau 螢火蟲洞</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/3</td></tr><tr><td>Milford Sound 巴士 + 遊船</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/4</td></tr><tr><td>Dark Sky Project 觀星</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/7</td></tr><tr><td>Oamaru 藍企鵝</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">7/8</td></tr></tbody></table></div></details><details class="grp" open><summary><span class="cn sm">其他</span>其他</summary>
+      <div class="tablebox"><table class="et"><thead><tr><th>項目</th><th>狀態</th><th class="r">NZD</th><th class="r">約 TWD</th><th>備註</th></tr></thead><tbody><tr><td>旅遊保險</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr><tr><td>NZeTA + IVL × 4</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note">出發前申請</td></tr><tr><td>桃園機場來回交通</td><td><span class="chip t">待填</span></td><td class="num r muted">—</td><td class="num r muted">—</td><td class="note"></td></tr></tbody></table></div></details>
+    <p class="howto">要更新金額，直接跟 Claude 說「XX 花了多少」或傳收據就好；這頁會跟著重新整理。</p>
+  </section>
+</div>
+<footer class="wrap"><p>金額以紐幣為準；台幣為約略換算，匯率用華航刷卡實際值 1 NZD ≈ 19.67 TWD。付款明細與卡號不放在這個公開頁面。</p></footer>
+<style>
+#totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+#totop.show{opacity:.92;transform:none;pointer-events:auto}
+#totop:hover,#totop:focus-visible{opacity:1}
+#totop:focus-visible{outline:2px solid var(--fg,#142327);outline-offset:3px}
+#totop svg{width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){#totop{transition:none}}
+@media print{#totop{display:none}}
+</style>
+<button id="totop" type="button" aria-label="回到頁面頂端" title="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+function u(){b.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>400)}
+window.addEventListener('scroll',u,{passive:true});u();
+b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
+</script></body></html>
