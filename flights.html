@@ -448,4 +448,19 @@ footer li span { color: var(--fg); }
   </section>
 </div>
 <footer class="wrap"><p>時間為當地時間；台灣比紐西蘭慢 4 小時。航班資訊以航空公司電子機票為準。</p></footer>
-</body></html>
+<style>
+#totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+#totop.show{opacity:.92;transform:none;pointer-events:auto}
+#totop:hover,#totop:focus-visible{opacity:1}
+#totop:focus-visible{outline:2px solid var(--fg,#142327);outline-offset:3px}
+#totop svg{width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){#totop{transition:none}}
+@media print{#totop{display:none}}
+</style>
+<button id="totop" type="button" aria-label="回到頁面頂端" title="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+function u(){b.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>400)}
+window.addEventListener('scroll',u,{passive:true});u();
+b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
+</script></body></html>

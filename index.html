@@ -548,4 +548,20 @@ footer li span { color: var(--fg); }
 <ul><li><span>第 1 天</span> Christchurch Tram at Worcester Street · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 2 天</span> Castle Hill Canterbury NZ · — · CC0</li><li><span>第 3 天</span> Looking down the Franz Josef Glacier from above the Melchior Glacier · Avenue · CC BY-SA 3.0</li><li><span>第 4 天</span> Blue Pools at the confluence of Blue River and Makarora River · Pseudopanax · Public domain</li><li><span>第 5 天</span> &quot;The Tree&quot; Lake Wanaka · Bernard Spragg · CC0</li><li><span>第 6 天</span> Arrowtown Main Street · Michael Coghlan · CC BY-SA 2.0</li><li><span>第 7 天</span> Queenstown – Wakatipu Lake &amp; Remarkable Mountains view from Skyline Gondola · — · Public domain</li><li><span>第 8 天</span> Lake Te Anau 06 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 9 天</span> Mitre Peak of Milford Sound, February 2015 · Bernard Spragg · CC0</li><li><span>第 10 天</span> Lake Pukaki 20 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 11 天</span> Hooker Valley Pano · Christian Mehlführer · CC BY 3.0</li><li><span>第 12 天</span> Church of the Good Shepherd, Lake Tekapo 03 · Michal Klajban · CC BY-SA 4.0</li><li><span>第 13 天</span> Eudyptula family exiting burrow（澳洲拍攝，同種範例） · JJ Harrison · CC BY-SA 3.0</li><li><span>第 14 天</span> Harbour Board Building and Maude&#x27;s Store, Oamaru · Pseudopanax · Public domain</li></ul>
 <p>照片取自 Wikimedia Commons，依各自授權使用。距離與車程為約略數字，冬季請多預留 20–30% 時間；營地與景點開放情況請出發前再確認。</p>
 </footer>
+<style>
+#totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+#totop.show{opacity:.92;transform:none;pointer-events:auto}
+#totop:hover,#totop:focus-visible{opacity:1}
+#totop:focus-visible{outline:2px solid var(--fg,#142327);outline-offset:3px}
+#totop svg{width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){#totop{transition:none}}
+@media print{#totop{display:none}}
+</style>
+<button id="totop" type="button" aria-label="回到頁面頂端" title="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+function u(){b.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>400)}
+window.addEventListener('scroll',u,{passive:true});u();
+b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
+</script>
 </body></html>
