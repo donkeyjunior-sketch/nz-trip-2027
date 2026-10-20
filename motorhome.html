@@ -132,11 +132,12 @@ footer li span { color: var(--fg); }
 .tabs a:hover{color:var(--fg)}
 .tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
 
-.hero{padding-block:36px 8px;display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:center}
-.hero img{width:100%;border-radius:16px;display:block;aspect-ratio:3/2;object-fit:cover;max-width:100%}
+.hero{padding-block:36px 6px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:start}
+.hero img{width:100%;border-radius:14px;display:block;aspect-ratio:3/2;object-fit:cover;max-width:300px;margin-top:6px}
 .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,5vw,56px);line-height:1.15;margin:8px 0 10px}
 .status{display:inline-flex;gap:8px;align-items:center;font-size:13.5px;background:var(--tint);border-radius:999px;padding:4px 12px;margin-top:14px}
-.status b{color:var(--warm)}
+.status b{color:var(--warm);white-space:nowrap}
+.spec dd.dims{white-space:nowrap;font-size:clamp(16px,4.2vw,19px)}
 .spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 22px;margin:22px 0 0;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .spec div{display:flex;flex-direction:column}
 .spec dt{font-size:12px;color:var(--muted);letter-spacing:.06em}
@@ -173,7 +174,7 @@ footer li span { color: var(--fg); }
 .plans figcaption{font-size:13.5px;color:#56686d;margin-top:8px}
 .plans figcaption b{color:#142327}
 .note{font-size:13px;color:var(--muted);margin-top:10px}
-@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:24px 4px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery figure.wide{grid-column:span 2}}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-block:24px 4px;gap:16px}.hero img{max-width:100%;max-height:200px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery figure.wide{grid-column:span 2}}
 </style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html">航班</a><a href="motorhome.html" aria-current="page">露營車</a><a href="drone.html">空拍機</a><a href="expenses.html">費用</a></div></nav>
 <div class="wrap">
   <header class="hero">
@@ -188,7 +189,7 @@ footer li span { color: var(--fg); }
   <dl class="spec">
     <div><dt>床位</dt><dd>6 <small>人</small></dd></div>
     <div><dt>後座安全帶</dt><dd>4 <small>座</small></dd></div>
-    <div><dt>長 × 寬 × 高</dt><dd>7.4 × 2.2 × 3.2 <small>m</small></dd></div>
+    <div><dt>長 × 寬 × 高</dt><dd class="dims">7.4 × 2.2 × 3.2 <small>m</small></dd></div>
     <div><dt>清水 / 廢水</dt><dd>120 / 130 <small>L</small></dd></div>
     <div><dt>油箱</dt><dd>100 <small>L</small></dd></div>
     <div><dt>冰箱</dt><dd>150 <small>L</small></dd></div>
