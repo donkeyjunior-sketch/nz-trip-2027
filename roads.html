@@ -1,0 +1,377 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6f79'/%3E%3Ccircle cx='47' cy='18' r='6.5' fill='%23e8b04a'/%3E%3Cpath d='M4 54 L23 20 L33 37 L41 26 L60 54 Z' fill='%23dfeced'/%3E%3Cpath d='M23 20 L17.4 30 L21 28.6 L23.5 31.5 L26.4 28.4 L28.6 29.4 Z M41 26 L37.3 31.4 L40 30.6 L42 32.6 L44.6 30.6 Z' fill='%23fff'/%3E%3C/svg%3E">
+<title>路況 · 南島冬季之旅 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* Layout: a road-trip field journal. Cover + overview map, then one spread per day: photo left, logbook right. */
+:root {
+--bg: #eef3f4;      /* glacier paper */
+--card: #ffffff;
+--fg: #142327;
+--muted: #56686d;
+--line: #d3dde0;
+--accent: #0f6f79;  /* glacial meltwater teal */
+--warm: #a8741b;    /* tussock ochre */
+--tint: #dfeced;
+--display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+--body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+--data: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.7; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-family: var(--data); font-variant-numeric: tabular-nums; }
+/* cover */
+.cover { padding-block: 48px 24px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+.eyebrow { font-family: var(--data); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; font-size: 15px; margin: 0; }
+.cover h1 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 6vw, 64px); line-height: 1.15; margin: 8px 0 12px; text-wrap: balance; }
+.cover h1 small { display: block; font-family: var(--data); font-weight: 600; font-size: .38em; letter-spacing: .06em; color: var(--muted); margin-top: 6px; }
+.lede { color: var(--muted); max-width: 34em; margin: 0 0 20px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--data); font-size: 34px; line-height: 1; font-weight: 700; }
+.facts span { font-size: 13px; color: var(--muted); }
+.who { margin-top: 22px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+.who i { font-style: normal; display: inline-block; width: 22px; border-top: 2px solid var(--accent); vertical-align: middle; margin-right: 8px; }
+.who i.r { border-top: 2px dashed #d0612f; }
+.who i.g { border-top-color: #1D9E75; }
+.map { --p: var(--fg); --ts: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 8px; max-width: 100%; }
+.map svg { width: 100%; height: auto; display: block; }
+.map .th { font: 500 13px var(--body); fill: var(--fg); }
+.map .ts { font: 400 11.5px var(--body); fill: var(--muted); }
+.map .num { font: 700 10px var(--data); fill: #fff; }
+/* day nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: thin; }
+.nav a { flex: 0 0 auto; text-decoration: none; color: var(--fg); border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 2px 12px; display: flex; gap: 6px; align-items: baseline; font-family: var(--data); font-size: 15px; }
+.nav a b { font-weight: 700; color: var(--accent); }
+.nav a span { color: var(--muted); font-size: 13px; }
+.nav a:hover { border-color: var(--accent); }
+/* overview */
+.block { padding-block: 36px 8px; }
+.block h2, .day h2 { font-family: var(--display); font-weight: 900; text-wrap: balance; }
+.block h2 { font-size: 26px; margin: 0 0 14px; }
+.tablebox { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--data); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-size: 17px; }
+td.r, th.r { text-align: right; }
+.winter { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; margin-top: 18px; padding: 0; list-style: none; }
+.winter li { font-size: 14.5px; color: var(--muted); }
+.winter b { display: block; color: var(--fg); font-size: 15px; }
+/* day spreads */
+.days { display: grid; gap: 28px; padding-block: 28px 12px; }
+.day { scroll-margin-top: 70px; display: grid; grid-template-columns: minmax(0, 1fr); background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.photo { margin: 0; position: relative; background: var(--tint); aspect-ratio: 16 / 6; max-height: 340px; width: 100%; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pmain { position: absolute; inset: 0; }
+.photo.has3 { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 3px; background: var(--card); min-height: 560px; }
+.photo.has3 .fimg, .photo.has3 img { position: absolute; inset: 0; }
+.photo.has3 .pmain { position: relative; inset: auto; min-height: 0; overflow: hidden; }
+.thumbs { display: contents; }
+.thumbs figure { margin: 0; position: relative; min-height: 0; overflow: hidden; background: var(--tint); }
+.thumbs.t3 { grid-template-columns: 1fr 1fr 1fr; }
+.fimg { width: 100%; height: 100%; background-size: cover; background-position: center; }
+.thumbs figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 10px 6px; font-size: 12px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.6)); }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 16px 10px; font-size: 12.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+.badge { position: absolute; top: 14px; left: 14px; background: rgba(12, 28, 32, .82); color: #fff; border-radius: 10px; padding: 6px 12px; display: flex; flex-direction: column; line-height: 1.15; }
+.badge .dn { font-family: var(--data); font-weight: 700; font-size: 22px; letter-spacing: .04em; }
+.badge .dd { font-size: 12.5px; opacity: .85; }
+.body { padding: 24px 26px 22px; min-width: 0; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 0 32px; align-items: start; }
+.bl, .br { min-width: 0; }
+.bl .wx { margin-top: 14px; }
+.day h2 { font-size: 26px; margin: 0; line-height: 1.3; }
+.route { font-family: var(--data); font-size: 21px; font-weight: 600; letter-spacing: .02em; margin: 4px 0 14px; color: var(--accent); }
+.route .arrow { color: var(--muted); padding: 0 2px; }
+.route .stay { font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+.stats { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 26px; margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats dt { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+.stats dd { margin: 0; }
+.stats dd.num { font-size: 26px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.stats .via dd { font-family: var(--data); font-size: 16px; line-height: 1.3; padding-top: 4px; }
+.camp { display: grid; gap: 0; margin-bottom: 14px; }
+.lbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; font-weight: 600; color: var(--warm); }
+.camp b { font-size: 17px; }
+.camp b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.camp b a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.camp .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.camp2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.cbox { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.cbox.g { border-top: 3px solid var(--warm); }
+.cbox.c { border-top: 3px solid var(--accent); }
+.cbox .clbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.cbox.g .clbl { color: var(--warm); } .cbox.c .clbl { color: var(--accent); }
+.cbox b { font-size: 15px; line-height: 1.35; }
+.cbox b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.cbox .lk { display: block; font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin: 0 0 2px; }
+.cbox .note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+@media (max-width: 480px) { .camp2 { gap: 6px; } .cbox { padding: 8px 8px; } .cbox b { font-size: 14px; } .cbox .cmeta, .cbox .note { font-size: 12px; } }
+.cmeta, .camp .cmeta { font-size: 13px; color: var(--muted); }
+.cbox .cmeta a.gr { color: var(--warm); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.gr:hover, .cbox .cmeta a.cm:hover { text-decoration: underline; }
+.camp .cmeta .star { color: var(--warm); font-weight: 600; }
+.camp .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.alt { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--tint); border-radius: 0 8px 8px 0; display: grid; }
+.alt.same { display: block; font-size: 13px; color: var(--muted); }
+.alt .albl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; color: var(--accent); margin-right: 8px; }
+.alt b { font-size: 15px; }
+.alt b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.alt .lk { font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin-left: 8px; }
+.camp .cmeta s { color: #c0392b; }
+.ctbl { min-width: 1000px; }
+.ctbl td:nth-child(1), .ctbl td:nth-child(3), .ctbl td:nth-child(8), .ctbl th { white-space: nowrap; }
+.cnote2 { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+td small { color: var(--muted); font-size: 12px; }
+.camp .note { font-size: 13.5px; color: var(--muted); }
+.body h3 { font-size: 13px; margin: 0 0 4px; font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; color: var(--warm); font-weight: 600; }
+.sights { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 0; }
+.sights li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 10px; line-height: 1.5; padding: 6px 0; border-top: 1px dashed var(--line); }
+.sights li:first-child { border-top: 0; }
+.sights time { font-family: var(--data); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+.sights li > div { display: grid; min-width: 0; }
+.sights b { font-weight: 600; font-size: 15px; }
+.sights li > div > span { font-size: 14px; color: var(--muted); }
+.sights b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.sights b a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.sights .opts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; }
+.sights .opts em { font-style: normal; font-size: 12.5px; color: var(--muted); margin-right: 2px; }
+.sights .opts a { font-size: 13px; text-decoration: none; color: var(--accent); border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 2px 10px; max-width: 100%; overflow-wrap: anywhere; }
+.sights .opts a:hover { border-color: var(--accent); }
+.sights .opts .star { font-style: normal; color: var(--warm); font-weight: 600; }
+.sights .opts small { color: var(--muted); font-size: 11.5px; }
+.sights .optnote { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.sights .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.wx { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 8px; margin: 0 0 6px; }
+.wx > div { background: var(--tint); border-radius: 10px; padding: 8px 12px; display: grid; gap: 2px; }
+.wx span { font-family: var(--data); font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+.wx b { font-family: var(--data); font-variant-numeric: tabular-nums; font-size: 17px; font-weight: 600; color: var(--fg); }
+.wxnote { margin: 0 0 14px; font-size: 13px; color: var(--muted); }
+.wx + .hikes, .wx + .tip { margin-top: 8px; }
+.hikes { margin: 0 0 14px; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.hikes h3 { margin-bottom: 6px; }
+.hikes ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hikes li { display: grid; gap: 1px; line-height: 1.5; }
+.hikes li + li { border-top: 1px dashed var(--line); padding-top: 10px; }
+.hikes b { font-weight: 600; font-size: 15px; }
+.hikes b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.hikes b a:hover { color: var(--accent); }
+.hstar { font-family: var(--data); font-size: 11.5px; font-weight: 600; color: var(--card); background: var(--accent); border-radius: 999px; padding: 1px 8px; margin-left: 8px; vertical-align: 2px; }
+.hmeta { font-family: var(--data); font-size: 13px; color: var(--warm); font-weight: 600; }
+.hd { font-size: 14px; color: var(--muted); }
+.hnone { margin: 0; font-size: 14px; color: var(--muted); }
+.htbl td:nth-child(1), .htbl td:nth-child(3), .htbl th { white-space: nowrap; }
+.tip { margin: 0; font-size: 14px; background: var(--tint); border-radius: 10px; padding: 10px 14px; }
+.tip .lbl { margin-right: 8px; color: var(--accent); }
+.day:nth-child(odd) .photo { order: 0; }
+/* farewell */
+.farewell { scroll-margin-top: 70px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px; display: grid; gap: 14px; }
+.farewell h2 { margin: 0; font-size: 26px; }
+.fl { min-width: 480px; }
+.fl b { font-size: 17px; }
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.split div { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.split b { font-family: var(--data); font-size: 22px; display: block; }
+.split span { color: var(--muted); font-size: 14px; }
+.split .roy b { color: #d0612f; } .split .marg b { color: #1D9E75; }
+footer { padding-block: 32px 48px; font-size: 12.5px; color: var(--muted); }
+footer h2 { font-size: 15px; font-family: var(--body); margin: 0 0 6px; color: var(--fg); }
+footer details.cred { margin: 0 0 12px; }
+footer details.cred summary { cursor: pointer; font-size: 15px; font-weight: 600; color: var(--fg); list-style: none; display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+footer details.cred summary::-webkit-details-marker { display: none; }
+footer details.cred summary::before { content: '▸'; color: var(--accent); transition: transform .15s; }
+footer details.cred[open] summary::before { transform: rotate(90deg); }
+footer details.cred summary small { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+footer details.cred ul { margin-top: 6px; }
+footer ul { margin: 0 0 12px; padding-left: 18px; display: grid; gap: 2px; }
+footer li span { color: var(--fg); }
+@media (max-width: 760px) {
+.cover { grid-template-columns: 1fr; padding-block: 28px 16px; }
+.day { grid-template-columns: 1fr; }
+.day:nth-child(odd) .photo { order: 0; }
+.photo { min-height: 0; aspect-ratio: 4 / 3; max-width: 100%; max-height: none; }
+.body { grid-template-columns: minmax(0, 1fr); }
+.photo.has3 { aspect-ratio: auto; grid-template-rows: none; }
+.photo.has3 .pmain, .photo.has3 .thumbs figure { aspect-ratio: 3 / 2; }
+.body { padding: 18px 18px 18px; }
+.stats { grid-template-columns: auto auto; }
+.stats .via { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+.tabs{background:var(--card);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;padding-block:8px}
+.tabs a{text-decoration:none;color:var(--muted);font-weight:500;padding:6px 14px;border-radius:999px;font-size:15px}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+
+
+.hero2{padding-block:36px 6px}
+.hero2 h1{font-family:var(--display);font-weight:900;font-size:clamp(32px,5vw,52px);line-height:1.15;margin:8px 0 10px}
+.big{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;background:var(--accent);color:var(--card);border-radius:16px;padding:22px 24px;margin:10px 0 6px;text-decoration:none}
+.big:hover{filter:brightness(1.06)}
+.big:focus-visible{outline:3px solid var(--fg);outline-offset:3px}
+.big b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(20px,3.2vw,26px);line-height:1.25}
+.big span{display:block;font-size:14.5px;opacity:.9;margin-top:4px}
+.big i{font-style:normal;font-weight:700;font-size:15px;background:var(--card);color:var(--accent);border-radius:999px;padding:9px 18px;white-space:nowrap}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin:0;padding:0;list-style:none}
+.checks li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14.5px;color:var(--muted)}
+.checks b{display:block;color:var(--fg);font-size:15.5px;margin-bottom:4px}
+.checks a{color:var(--accent)}
+.rt td{vertical-align:top}
+.rt td small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.rt td.num{white-space:nowrap}
+.rt td a{color:var(--accent);text-decoration:none;white-space:nowrap}
+.rt tr.lvl2 td:first-child{box-shadow:inset 3px 0 0 var(--warm)}
+.lv{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-right:6px;vertical-align:1px}
+.lv.l2{background:var(--warm);color:#fff}
+.lv.l1{border:1px solid var(--warm);color:var(--warm)}
+.icons{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px 20px;margin:0;padding:0;list-style:none;font-size:14.5px}
+.icons b{display:block;color:var(--fg)}
+@media (max-width:700px){
+.rt{min-width:0}
+.rt thead{display:none}
+.rt,.rt tbody,.rt tr,.rt td{display:block}
+.rt tr{position:relative;padding:12px 16px;border-bottom:1px solid var(--line)}
+.rt tr:last-child{border-bottom:0}
+.rt td{border:0;padding:2px 0}
+.rt td.num{font-size:15px;font-weight:700}
+.rt td.num small{display:inline;margin-left:6px}
+.rt td:nth-child(3){color:var(--muted);font-size:13px}
+.rt td:last-child{position:absolute;top:12px;right:16px}
+.rt tr.lvl2 td:first-child{box-shadow:none}
+.rt tr.lvl2{box-shadow:inset 3px 0 0 var(--warm)}
+}
+</style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html">航班</a><a href="motorhome.html">露營車</a><a href="roads.html" aria-current="page">路況</a><a href="expenses.html">費用</a></div></nav>
+<div class="wrap">
+  <header class="hero2">
+    <p class="eyebrow">Road conditions</p>
+    <h1>路況</h1>
+    <p class="lede">冬天山口會因為下雪、結冰或雪崩風險臨時封路。每天出發前，先開 NZTA 即時路況看一下今天要走的路段。</p>
+  </header>
+
+  <a class="big" href="https://www.journeys.nzta.govt.nz/" target="_blank" rel="noopener">
+    <div><b>開啟 NZTA Journey Planner</b><span>紐西蘭交通局官方即時路況：封路、施工、需要雪鏈的路段都在地圖上</span></div>
+    <i>全版開啟 ↗</i>
+  </a>
+  <p class="lede2" style="margin-top:10px">NZTA 不允許被嵌入其他網站，所以會在新分頁全版打開。手機上建議加到主畫面，出發前一鍵打開。</p>
+
+  <section class="sec">
+    <h2>出發前三件事</h2>
+    <ul class="checks">
+      <li><b>1. 看今天的路段</b>在 NZTA 地圖上找下表「必查」「留意」的山口，有沒有紅色封路或雪鏈圖示。</li>
+      <li><b>2. 看天氣</b>山口有降雪預報時，等到中午前後再過，或改走備案。可查 <a href="https://www.metservice.com/" target="_blank" rel="noopener">MetService</a>。</li>
+      <li><b>3. 雪鏈和油</b>確認雪鏈在車上、會裝；翻 Lindis Pass、離開 Te Anau 前加滿油。電話查路況：0800 4 HIGHWAYS（0800 44 44 49）。</li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>每天要走的路段</h2>
+    <p class="lede2">「必查」是可能封路的山口，「留意」是容易結冰或起霧的路段。點「地圖」看 Google 地圖路線。</p>
+    <div class="tablebox"><table class="rt"><thead><tr><th>日期</th><th>路段</th><th>公路</th><th>要注意</th><th></th></tr></thead><tbody><tr class="lvl1"><td class="num">6/27<small>週日</small></td><td><b>Christchurch → Lake Tekapo</b><small>225 km · 約 3 小時 · 09:00 出發</small></td><td>SH1 · SH79 · SH8</td><td><span class="lv l1">留意</span>Burkes Pass（709 m）進 Tekapo 前的小山口，背陰處早上可能結冰</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Christchurch%2C%20New%20Zealand&amp;destination=Lake%20Tekapo%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl0"><td class="num">6/28<small>週一</small></td><td><b>Lake Tekapo → Mt Cook</b><small>105 km · 約 1.25 小時 · 13:45 出發</small></td><td>SH8 · SH80</td><td>沿 Lake Pukaki 湖岸，路況通常好；下雪後看 SH80 有沒有管制</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Lake%20Tekapo%2C%20New%20Zealand&amp;destination=Glentanner%20Park%20Centre%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl0"><td class="num">6/30<small>週三</small></td><td><b>Mt Cook → Twizel</b><small>65 km · 約 45 分鐘</small></td><td>SH80 · SH8</td><td>短程；清晨麥肯齊盆地常降到零下，路面易結黑冰</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Aoraki%20Mount%20Cook%20Village%2C%20New%20Zealand&amp;destination=Twizel%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl2"><td class="num">7/1<small>週四</small></td><td><b>Twizel → Wanaka</b><small>145 km · 約 2 小時 · 10:00 出發</small></td><td>SH8 · SH8A · SH6</td><td><span class="lv l2">必查</span>Lindis Pass（971 m）全程最高的山口，下雪會暫時封路或要求雪鏈；中午前後通過</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Twizel%2C%20New%20Zealand&amp;destination=Wanaka%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl2"><td class="num">7/3<small>週六</small></td><td><b>Wanaka → Queenstown</b><small>115 km · 約 1.5 小時 · 10:00 出發</small></td><td>SH6 經 Cromwell</td><td><span class="lv l2">必查</span>Kawarau 峽谷背陰路段易結冰；不要走 Crown Range（Cardrona Valley Rd）</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Wanaka%2C%20New%20Zealand&amp;destination=Queenstown%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl1"><td class="num">7/5<small>週一</small></td><td><b>Queenstown → Te Anau</b><small>170 km · 約 2.25 小時 · 09:30 出發</small></td><td>SH6 · SH97 · SH94</td><td><span class="lv l1">留意</span>Devil&#x27;s Staircase 沿湖彎道多、背陰，早上小心結冰</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Queenstown%2C%20New%20Zealand&amp;destination=Te%20Anau%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl2"><td class="num">7/6<small>週二</small></td><td><b>Te Anau → Milford Sound</b><small>240 km 來回 · 單程 2–2.5 小時</small></td><td>SH94 Milford Road</td><td><span class="lv l2">必查</span>搭巴士不自駕；Homer Tunnel 一帶常因雪崩風險臨時封路，出發前看巴士公司通知</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Te%20Anau%2C%20New%20Zealand&amp;destination=Milford%20Sound%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl1"><td class="num">7/7<small>週三</small></td><td><b>Te Anau → Dunedin</b><small>290 km · 約 3.5–4 小時 · 09:00 出發</small></td><td>SH94 · SH1</td><td><span class="lv l1">留意</span>Mossburn、Lumsden 一帶清晨常有霜和霧；全程最長的車程</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Te%20Anau%2C%20New%20Zealand&amp;destination=Dunedin%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl1"><td class="num">7/8<small>週四</small></td><td><b>Dunedin → Oamaru</b><small>125 km · 約 1.75 小時 · 11:30 出發</small></td><td>SH1</td><td><span class="lv l1">留意</span>出 Dunedin 往北的 Kilmog 上坡路段，冬天早上偶有結冰</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Dunedin%2C%20New%20Zealand&amp;destination=Oamaru%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr><tr class="lvl0"><td class="num">7/9<small>週五</small></td><td><b>Oamaru → Christchurch</b><small>250 km · 約 3.25 小時 · 09:00 出發</small></td><td>SH1</td><td>沿海平原，路況通常最穩定</td><td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Oamaru%2C%20New%20Zealand&amp;destination=Christchurch%2C%20New%20Zealand" target="_blank" rel="noopener">地圖 ↗</a></td></tr></tbody></table></div>
+  </section>
+
+  <section class="sec">
+    <h2>NZTA 地圖上常見的標示</h2>
+    <ul class="icons">
+      <li><b>Road closed</b>封路，等開放或改道</li>
+      <li><b>Chains required / Snow and ice</b>要裝雪鏈或有積雪結冰，慢慢開</li>
+      <li><b>Delays / Road works</b>施工或單線管制，多抓一點時間</li>
+      <li><b>Caution</b>落石、強風或路面狀況不佳</li>
+    </ul>
+  </section>
+</div>
+<footer class="wrap"><p>路段提醒依冬季常見狀況整理，實際以 NZTA 即時資訊為準。</p></footer>
+<style>
+/* unified page header + section headings (all tabs) */
+.cover,.hero,.hero2{padding-top:36px!important;align-items:start!important}
+.cover h1,.hero h1,.hero2 h1{font-size:clamp(32px,5vw,52px)!important;line-height:1.15!important;margin:8px 0 10px!important}
+.cover h1 small{font-size:.4em!important;margin-top:8px!important}
+.cover .lede,.hero .lede,.hero2 .lede{font-size:16px;color:var(--muted);max-width:40em;margin:0 0 20px}
+.block,.sec{padding-block:32px 6px!important}
+.block>h2,.sec>h2{font-family:var(--display);font-weight:900;font-size:26px!important;line-height:1.3;margin:0 0 14px!important}
+.block>h2+.lede2,.sec>h2+.lede2{margin-top:-8px!important}
+.lede2{font-size:14.5px!important;color:var(--muted)!important;max-width:44em;margin:0 0 16px!important}
+@media (max-width:760px){.cover,.hero,.hero2{padding-top:24px!important}.block,.sec{padding-block:26px 4px!important}.block>h2,.sec>h2{font-size:23px!important}}
+#totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+#totop.show{opacity:.92;transform:none;pointer-events:auto}
+#totop:hover,#totop:focus-visible{opacity:1}
+#totop:focus-visible{outline:2px solid var(--fg,#142327);outline-offset:3px}
+#totop svg{width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){#totop{transition:none}}
+@media print{#totop{display:none}}
+</style>
+<button id="totop" type="button" aria-label="回到頁面頂端" title="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+function u(){b.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>400)}
+window.addEventListener('scroll',u,{passive:true});u();
+b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
+</script><style>
+/* left sidebar navigation (replaces top tabs) */
+.leaflet-container{isolation:isolate;z-index:0}
+:root{--sidew:212px;--sidew-c:64px;--topbar:52px}
+body:has(nav.tabs){padding-left:var(--sidew);transition:padding-left .2s}
+body.side-collapsed:has(nav.tabs){padding-left:var(--sidew-c)}
+body nav.tabs{position:fixed;top:0;left:0;bottom:0;width:var(--sidew);z-index:60;background:var(--card);border-bottom:0;border-right:1px solid var(--line);overflow-y:auto;overflow-x:hidden;transition:width .2s,transform .22s}
+body.side-collapsed nav.tabs{width:var(--sidew-c)}
+body nav.tabs .wrap{display:flex;flex-direction:column;gap:4px;max-width:none;margin:0;padding:68px 10px 16px}
+body nav.tabs a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;font-size:15px;line-height:1.2;white-space:nowrap;color:var(--muted);text-decoration:none;font-weight:500}
+body nav.tabs a:hover{background:var(--tint);color:var(--fg)}
+body nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+body nav.tabs a svg{flex:0 0 20px;width:20px;height:20px}
+body.side-collapsed nav.tabs a{justify-content:center;padding:10px 0}
+body.side-collapsed nav.tabs a .lab{display:none}
+.side-brand{position:fixed;top:0;left:0;z-index:61;height:60px;display:flex;align-items:center;gap:10px;padding:0 12px;width:var(--sidew);transition:width .2s;pointer-events:none}
+body.side-collapsed .side-brand{width:var(--sidew-c)}
+.side-brand b{font-family:var(--display);font-weight:900;font-size:16px;color:var(--fg);white-space:nowrap;overflow:hidden;padding-left:46px}
+body.side-collapsed .side-brand b{display:none}
+#sidetoggle{position:fixed;top:12px;left:12px;z-index:62;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+#sidetoggle:hover{background:var(--tint)}
+#sidetoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#sidetoggle svg{width:20px;height:20px}
+#sidebackdrop{display:none}
+.side-cur{display:none}
+@media (max-width:900px){
+  body:has(nav.tabs),body.side-collapsed:has(nav.tabs){padding-left:0;padding-top:var(--topbar)}
+  body nav.tabs,body.side-collapsed nav.tabs{width:250px;transform:translateX(-100%);box-shadow:none;padding-top:env(safe-area-inset-top,0px)}
+  body.side-open nav.tabs{transform:none;box-shadow:0 0 40px rgba(0,0,0,.25)}
+  body.side-collapsed nav.tabs a{justify-content:flex-start;padding:10px 12px}
+  body.side-collapsed nav.tabs a .lab{display:inline}
+  .side-brand{width:100%!important;height:var(--topbar);background:var(--card);border-bottom:1px solid var(--line);pointer-events:auto;z-index:59}
+  .side-brand b{display:block!important;padding-left:50px;font-size:15px}
+  .side-cur{display:inline;color:var(--accent);font-family:var(--body);font-weight:700;font-size:15px}
+  #sidetoggle{top:6px;left:max(10px,env(safe-area-inset-left,0px))}
+  body.side-open #sidebackdrop{display:block;position:fixed;inset:0;z-index:58;background:rgba(0,0,0,.35)}
+  body:has(nav.tabs) .nav{top:var(--topbar)}
+}
+@media print{nav.tabs,#sidetoggle,.side-brand{display:none!important}body:has(nav.tabs){padding:0!important}}
+</style>
+<div class="side-brand"><b>南島冬季之旅 2027 <span class="side-cur"></span></b></div>
+<button id="sidetoggle" type="button" aria-label="展開或收合選單" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+<div id="sidebackdrop"></div>
+<script>
+(function(){var nav=document.querySelector('nav.tabs');if(!nav)return;var b=document.body,mq=window.matchMedia('(max-width:900px)'),t=document.getElementById('sidetoggle');
+var IC={'./':'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>','flights.html':'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>','motorhome.html':'<rect x="2" y="6" width="14" height="10" rx="1.5"/><path d="M16 9h3l3 3v4h-6"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>','drone.html':'<circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="M7 7l2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/>','roads.html':'<path d="M8 3 4 21M16 3l4 18M12 4v2.5M12 10.5v3M12 17.5v2.5"/>','expenses.html':'<rect x="2.5" y="6" width="19" height="13" rx="2"/><path d="M2.5 10h19M16 14.5h2.5"/>'};
+nav.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href');var lab=a.textContent.trim();a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(IC[h]||'<circle cx="12" cy="12" r="8"/>')+'</svg><span class="lab">'+lab+'</span>';a.title=lab;if(a.getAttribute('aria-current')==='page'){var c=document.querySelector('.side-cur');if(c)c.textContent='· '+lab;}});
+function get(){try{return localStorage.getItem('sideCollapsed')==='1'}catch(e){return false}}
+function set(v){try{localStorage.setItem('sideCollapsed',v?'1':'0')}catch(e){}}
+function sync(){if(mq.matches){b.classList.remove('side-collapsed');t.setAttribute('aria-expanded',b.classList.contains('side-open'))}else{b.classList.remove('side-open');b.classList.toggle('side-collapsed',get());t.setAttribute('aria-expanded',!get())}}
+t.addEventListener('click',function(){if(mq.matches){b.classList.toggle('side-open')}else{set(!get())}sync()});
+document.getElementById('sidebackdrop').addEventListener('click',function(){b.classList.remove('side-open');sync()});
+nav.addEventListener('click',function(e){if(e.target.closest('a')&&mq.matches){b.classList.remove('side-open')}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.classList.contains('side-open')){b.classList.remove('side-open');sync();t.focus()}});
+(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));sync();})();
+</script></body></html>
