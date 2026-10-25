@@ -77,6 +77,12 @@ td.r, th.r { text-align: right; }
 .day { scroll-margin-top: 70px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
 .photo { margin: 0; position: relative; background: var(--tint); min-height: 280px; }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pmain { position: absolute; inset: 0; }
+.photo.has3 { display: flex; flex-direction: column; }
+.photo.has3 .pmain { position: relative; inset: auto; flex: 1 1 auto; min-height: 220px; }
+.thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; padding-top: 3px; background: var(--card); }
+.thumbs figure { margin: 0; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--tint); }
+.thumbs figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 10px 6px; font-size: 12px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.6)); }
 .photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 16px 10px; font-size: 12.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
 .badge { position: absolute; top: 14px; left: 14px; background: rgba(12, 28, 32, .82); color: #fff; border-radius: 10px; padding: 6px 12px; display: flex; flex-direction: column; line-height: 1.15; }
 .badge .dn { font-family: var(--data); font-weight: 700; font-size: 22px; letter-spacing: .04em; }
@@ -178,6 +184,8 @@ footer li span { color: var(--fg); }
 .day { grid-template-columns: 1fr; }
 .day:nth-child(odd) .photo { order: 0; }
 .photo { min-height: 0; aspect-ratio: 4 / 3; max-width: 100%; }
+.photo.has3 { aspect-ratio: auto; }
+.photo.has3 .pmain { aspect-ratio: 4 / 3; min-height: 0; flex: none; }
 .body { padding: 18px 18px 18px; }
 .stats { grid-template-columns: auto auto; }
 .stats .via { grid-column: 1 / -1; }
@@ -277,10 +285,11 @@ footer li span { color: var(--fg); }
 <p class="tip"><span class="lbl">提示</span>全程約 15 小時，紐西蘭比台灣快 4 小時。轉機時間短又要換航廈，手提行李精簡，坐前排方便快速下機。</p>
 </section>
 <section class="day" id="day1">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch_Tram_at_Worcester_Street.jpg?width=1000" alt="Christchurch 的古董電車" loading="lazy">
-<figcaption>Christchurch 的古董電車</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Apteryx_mantelli_-Rotorua%2C_North_Island%2C_New_Zealand-8a.jpg?width=800" alt="北島褐色奇異鳥（kiwi）" loading="lazy">
+<figcaption>北島褐色奇異鳥（kiwi）</figcaption></div>
 <div class="badge"><span class="dn">DAY 01</span><span class="dd">6/26 週六</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Feeding_the_eels_-_Willowbank_Wildlife_Reserve_-_Christchurch%2C_NZ_-_DSC01477.jpg?width=800" alt="Willowbank 餵鰻魚" loading="lazy"><figcaption>Willowbank 餵鰻魚</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aviary_-_Willowbank_Wildlife_Reserve_-_Christchurch%2C_NZ_-_DSC01713.jpg?width=800" alt="Willowbank 鳥園" loading="lazy"><figcaption>Willowbank 鳥園</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>抵達基督城</h2>
@@ -297,10 +306,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day2">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Castle_Hill_Canterbury_NZ.jpg?width=1000" alt="Castle Hill 的石灰岩" loading="lazy">
-<figcaption>Castle Hill 的石灰岩</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Castle_Hill_Canterbury_NZ.jpg?width=1000" alt="Castle Hill 的石灰岩" loading="lazy">
+<figcaption>Castle Hill 的石灰岩</figcaption></div>
 <div class="badge"><span class="dn">DAY 02</span><span class="dd">6/27 週日</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Otira_Viaduct_20226.jpg?width=800" alt="Otira Viaduct 高架橋" loading="lazy"><figcaption>Otira Viaduct 高架橋</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Devils_Punchbowl_Falls_I_-_Arthurs_Pass_N.P._-_panoramio.jpg?width=800" alt="Devils Punchbowl 瀑布" loading="lazy"><figcaption>Devils Punchbowl 瀑布</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>翻越亞瑟隘口</h2>
@@ -319,10 +329,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day3">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Looking_down_the_Franz_Josef_Glacier_from_above_the_Melchior_Glacier.jpg?width=1000" alt="Franz Josef 冰河" loading="lazy">
-<figcaption>Franz Josef 冰河</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Looking_down_the_Franz_Josef_Glacier_from_above_the_Melchior_Glacier.jpg?width=1000" alt="Franz Josef 冰河" loading="lazy">
+<figcaption>Franz Josef 冰河</figcaption></div>
 <div class="badge"><span class="dn">DAY 03</span><span class="dd">6/28 週一</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Matheson_reflection_of_Mount_Tasman_and_Aoraki_Mount_Cook.jpg?width=800" alt="Lake Matheson 倒影" loading="lazy"><figcaption>Lake Matheson 倒影</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Franz_Josef_Glacier_14.jpg?width=800" alt="Franz Josef 冰河谷" loading="lazy"><figcaption>Franz Josef 冰河谷</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>冰河日</h2>
@@ -341,10 +352,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day4">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Blue_Pools_at_the_confluence_of_Blue_River_and_Makarora_River%2C_surrounded_by_beech_forest.jpg?width=1000" alt="Makarora 的 Blue Pools" loading="lazy">
-<figcaption>Makarora 的 Blue Pools</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Blue_Pools_at_the_confluence_of_Blue_River_and_Makarora_River%2C_surrounded_by_beech_forest.jpg?width=1000" alt="Makarora 的 Blue Pools" loading="lazy">
+<figcaption>Makarora 的 Blue Pools</figcaption></div>
 <div class="badge"><span class="dn">DAY 04</span><span class="dd">6/29 週二</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Knights_Point_obelisk_PA02.jpg?width=800" alt="Knights Point 觀景點" loading="lazy"><figcaption>Knights Point 觀景點</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Thunder_Creek_Falls_Flickr_01.jpg?width=800" alt="Thunder Creek 瀑布" loading="lazy"><figcaption>Thunder Creek 瀑布</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>哈斯特隘口</h2>
@@ -363,10 +375,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day5">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/%22The_Tree%22_Lake_Wanaka._NZ_%2824202789152%29.jpg?width=1000" alt="湖中孤樹 That Wanaka Tree" loading="lazy">
-<figcaption>湖中孤樹 That Wanaka Tree</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/%22The_Tree%22_Lake_Wanaka._NZ_%2824202789152%29.jpg?width=1000" alt="湖中孤樹 That Wanaka Tree" loading="lazy">
+<figcaption>湖中孤樹 That Wanaka Tree</figcaption></div>
 <div class="badge"><span class="dn">DAY 05</span><span class="dd">6/30 週三</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cardrona_Alpine_Resort.jpg?width=800" alt="Cardrona 滑雪場" loading="lazy"><figcaption>Cardrona 滑雪場</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Puzzling_World%2C_Wanaka%2C_New_Zealand.jpg?width=800" alt="Puzzling World" loading="lazy"><figcaption>Puzzling World</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>瓦納卡慢活日</h2>
@@ -385,10 +398,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day6">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arrowtown_Main_Street_%286580983961%29.jpg?width=1000" alt="Arrowtown 主街" loading="lazy">
-<figcaption>Arrowtown 主街</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arrowtown_Main_Street_%286580983961%29.jpg?width=1000" alt="Arrowtown 主街" loading="lazy">
+<figcaption>Arrowtown 主街</figcaption></div>
 <div class="badge"><span class="dn">DAY 06</span><span class="dd">7/1 週四</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kawarau_Gorge_Suspension_Bridge_001.jpg?width=800" alt="Kawarau 吊橋（高空彈跳）" loading="lazy"><figcaption>Kawarau 吊橋（高空彈跳）</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Old_Cromwell_Town%2C_Central_Otago.jpg?width=800" alt="Cromwell 舊城區" loading="lazy"><figcaption>Cromwell 舊城區</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>淘金小鎮</h2>
@@ -407,10 +421,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day7">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Queenstown_-_Wakatipu_Lake_%26_Remarkable_Mountains_View_from_Skyline_Gondola_Observation_Deck.jpg?width=1000" alt="從 Skyline 看瓦卡蒂普湖" loading="lazy">
-<figcaption>從 Skyline 看瓦卡蒂普湖</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Queenstown_-_Wakatipu_Lake_%26_Remarkable_Mountains_View_from_Skyline_Gondola_Observation_Deck.jpg?width=1000" alt="從 Skyline 看瓦卡蒂普湖" loading="lazy">
+<figcaption>從 Skyline 看瓦卡蒂普湖</figcaption></div>
 <div class="badge"><span class="dn">DAY 07</span><span class="dd">7/2 週五</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/TSS_Earnslaw_Steamship_Lake_Whakatipu_2024_01.jpg?width=800" alt="TSS Earnslaw 蒸汽船" loading="lazy"><figcaption>TSS Earnslaw 蒸汽船</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jump_from_nevis_bungee_platform.jpg?width=800" alt="Nevis 峽谷" loading="lazy"><figcaption>Nevis 峽谷</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>皇后鎮刺激日</h2>
@@ -429,10 +444,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day8">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Te_Anau_06.jpg?width=1000" alt="Lake Te Anau" loading="lazy">
-<figcaption>Lake Te Anau</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Te_Anau_06.jpg?width=1000" alt="Lake Te Anau" loading="lazy">
+<figcaption>Lake Te Anau</figcaption></div>
 <div class="badge"><span class="dn">DAY 08</span><span class="dd">7/3 週六</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Te_Anau%2C_Kepler_Track%2C_New_Zealand_%28002%29.JPG?width=800" alt="Kepler Track 湖岸" loading="lazy"><figcaption>Kepler Track 湖岸</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Surroundings_of_the_Te_Anau_Glowworm_Caves_04.jpg?width=800" alt="螢火蟲洞一帶" loading="lazy"><figcaption>螢火蟲洞一帶</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>前往峽灣國家公園</h2>
@@ -451,10 +467,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day9">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mitre_Peak_of_Milford_Sound%2C_New_Zealand%3B_February_2015.jpg?width=1000" alt="Mitre Peak 與米佛峽灣" loading="lazy">
-<figcaption>Mitre Peak 與米佛峽灣</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mitre_Peak_of_Milford_Sound%2C_New_Zealand%3B_February_2015.jpg?width=1000" alt="Mitre Peak 與米佛峽灣" loading="lazy">
+<figcaption>Mitre Peak 與米佛峽灣</figcaption></div>
 <div class="badge"><span class="dn">DAY 09</span><span class="dd">7/4 週日</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mirror_Lakes_Fiordland_NZ.JPG?width=800" alt="Mirror Lakes 鏡湖" loading="lazy"><figcaption>Mirror Lakes 鏡湖</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Homer_Tunnel_01.jpg?width=800" alt="Homer Tunnel" loading="lazy"><figcaption>Homer Tunnel</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>米佛峽灣</h2>
@@ -473,10 +490,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day10">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Pukaki_20.jpg?width=1000" alt="Lake Pukaki 與 Aoraki" loading="lazy">
-<figcaption>Lake Pukaki 與 Aoraki</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake_Pukaki_20.jpg?width=1000" alt="Lake Pukaki 與 Aoraki" loading="lazy">
+<figcaption>Lake Pukaki 與 Aoraki</figcaption></div>
 <div class="badge"><span class="dn">DAY 10</span><span class="dd">7/5 週一</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lindis_Pass%2C_Otago%2C_New_Zealand.jpg?width=800" alt="Lindis Pass" loading="lazy"><figcaption>Lindis Pass</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Marko_Lake_Pukaki%2C_Mount_Cook_Far_Away.jpg?width=800" alt="Lake Pukaki 遠眺庫克山" loading="lazy"><figcaption>Lake Pukaki 遠眺庫克山</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>最長的一天</h2>
@@ -495,10 +513,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day11">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hooker_Valley_Pano_MC_edit1.jpg?width=1000" alt="Hooker Valley Track" loading="lazy">
-<figcaption>Hooker Valley Track</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hooker_Valley_Pano_MC_edit1.jpg?width=1000" alt="Hooker Valley Track" loading="lazy">
+<figcaption>Hooker Valley Track</figcaption></div>
 <div class="badge"><span class="dn">DAY 11</span><span class="dd">7/6 週二</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Icebergs_in_Hooker_Glacier_Lake_in_front_of_Aoraki_Mount_Cook.jpg?width=800" alt="Hooker 冰河湖" loading="lazy"><figcaption>Hooker 冰河湖</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/View_from_glacial_moraine_wall_across_Tasman_Glacier_terminal_and_lake.jpg?width=800" alt="Tasman 冰河湖" loading="lazy"><figcaption>Tasman 冰河湖</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>庫克山步道</h2>
@@ -517,10 +536,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day12">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg?width=1000" alt="好牧羊人教堂" loading="lazy">
-<figcaption>好牧羊人教堂</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Church_of_the_Good_Shepherd%2C_Lake_Tekapo%2C_New_Zealand_03.jpg?width=1000" alt="好牧羊人教堂" loading="lazy">
+<figcaption>好牧羊人教堂</figcaption></div>
 <div class="badge"><span class="dn">DAY 12</span><span class="dd">7/7 週三</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mount_John_University_Observatory_%289618676129%29.jpg?width=800" alt="Mt John 天文台" loading="lazy"><figcaption>Mt John 天文台</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Church_of_good_Shepherd%2C_lake_Tekapo%2C_stargazing_view_4.jpg?width=800" alt="好牧羊人教堂星空" loading="lazy"><figcaption>好牧羊人教堂星空</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>星空小鎮</h2>
@@ -539,10 +559,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day13">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eudyptula_novaehollandiae_family_exiting_burrow.jpg?width=1000" alt="小藍企鵝（範例照片）" loading="lazy">
-<figcaption>小藍企鵝（範例照片）</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Eudyptula_novaehollandiae_family_exiting_burrow.jpg?width=1000" alt="小藍企鵝（範例照片）" loading="lazy">
+<figcaption>小藍企鵝（範例照片）</figcaption></div>
 <div class="badge"><span class="dn">DAY 13</span><span class="dd">7/8 週四</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Elephant_Rocks_MRD_01.jpg?width=800" alt="Elephant Rocks" loading="lazy"><figcaption>Elephant Rocks</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Steampunk_Oamaru.jpg?width=800" alt="Steampunk HQ" loading="lazy"><figcaption>Steampunk HQ</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>藍企鵝之夜</h2>
@@ -561,10 +582,11 @@ footer li span { color: var(--fg); }
 </div>
 </section>
 <section class="day" id="day14">
-<figure class="photo">
-<img src="https://commons.wikimedia.org/wiki/Special:FilePath/Harbour_Board_Building_and_Maude%27s_Store_in_Victorian_precinct_of_Oamaru.jpg?width=1000" alt="Oamaru 維多利亞老街區" loading="lazy">
-<figcaption>Oamaru 維多利亞老街區</figcaption>
+<figure class="photo has3">
+<div class="pmain"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Harbour_Board_Building_and_Maude%27s_Store_in_Victorian_precinct_of_Oamaru.jpg?width=1000" alt="Oamaru 維多利亞老街區" loading="lazy">
+<figcaption>Oamaru 維多利亞老街區</figcaption></div>
 <div class="badge"><span class="dn">DAY 14</span><span class="dd">7/9 週五</span></div>
+<div class="thumbs"><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Christchurch_Tram_at_Worcester_Street.jpg?width=800" alt="古董電車" loading="lazy"><figcaption>古董電車</figcaption></figure><figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/New_Regent_Street._Christchurch._NZ._%2849312698126%29.jpg?width=800" alt="New Regent Street" loading="lazy"><figcaption>New Regent Street</figcaption></figure></div>
 </figure>
 <div class="body">
 <h2>回到基督城</h2>
@@ -605,7 +627,7 @@ footer li span { color: var(--fg); }
 </div>
 <footer class="wrap">
 <h2>照片來源</h2>
-<ul><li><span>第 1 天</span> Christchurch Tram at Worcester Street · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 2 天</span> Castle Hill Canterbury NZ · — · CC0</li><li><span>第 3 天</span> Looking down the Franz Josef Glacier from above the Melchior Glacier · Avenue · CC BY-SA 3.0</li><li><span>第 4 天</span> Blue Pools at the confluence of Blue River and Makarora River · Pseudopanax · Public domain</li><li><span>第 5 天</span> &quot;The Tree&quot; Lake Wanaka · Bernard Spragg · CC0</li><li><span>第 6 天</span> Arrowtown Main Street · Michael Coghlan · CC BY-SA 2.0</li><li><span>第 7 天</span> Queenstown – Wakatipu Lake &amp; Remarkable Mountains view from Skyline Gondola · — · Public domain</li><li><span>第 8 天</span> Lake Te Anau 06 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 9 天</span> Mitre Peak of Milford Sound, February 2015 · Bernard Spragg · CC0</li><li><span>第 10 天</span> Lake Pukaki 20 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 11 天</span> Hooker Valley Pano · Christian Mehlführer · CC BY 3.0</li><li><span>第 12 天</span> Church of the Good Shepherd, Lake Tekapo 03 · Michal Klajban · CC BY-SA 4.0</li><li><span>第 13 天</span> Eudyptula family exiting burrow（澳洲拍攝，同種範例） · JJ Harrison · CC BY-SA 3.0</li><li><span>第 14 天</span> Harbour Board Building and Maude&#x27;s Store, Oamaru · Pseudopanax · Public domain</li></ul>
+<ul><li><span>第 1 天</span> Apteryx mantelli – Rotorua, North Island · The.Rohit · CC BY 2.0</li><li><span>第 1 天</span> Feeding the eels - Willowbank Wildlife Reserve - Christchurch, NZ - DSC01477 · Daderot · CC0</li><li><span>第 1 天</span> Aviary - Willowbank Wildlife Reserve - Christchurch, NZ - DSC01713 · Daderot · CC0</li><li><span>第 2 天</span> Castle Hill Canterbury NZ · — · CC0</li><li><span>第 2 天</span> Otira Viaduct 20226 · David Palmer · CC BY-SA 4.0</li><li><span>第 2 天</span> Devils Punchbowl Falls I - Arthurs Pass N.P. - panoramio · Pavel Špindler · CC BY 3.0</li><li><span>第 3 天</span> Looking down the Franz Josef Glacier from above the Melchior Glacier · Avenue · CC BY-SA 3.0</li><li><span>第 3 天</span> Lake Matheson reflection of Mount Tasman and Aoraki Mount Cook · Pseudopanax · Public domain</li><li><span>第 3 天</span> Franz Josef Glacier 14 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 4 天</span> Blue Pools at the confluence of Blue River and Makarora River · Pseudopanax · Public domain</li><li><span>第 4 天</span> Knights Point obelisk PA02 · Paora · CC0</li><li><span>第 4 天</span> Thunder Creek Falls Flickr 01 · itravelNZ · CC BY 2.0</li><li><span>第 5 天</span> &quot;The Tree&quot; Lake Wanaka · Bernard Spragg · CC0</li><li><span>第 5 天</span> Cardrona Alpine Resort · RoLam007 · CC0</li><li><span>第 5 天</span> Puzzling World, Wanaka, New Zealand · Ulrich Lange · CC BY-SA 4.0</li><li><span>第 6 天</span> Arrowtown Main Street · Michael Coghlan · CC BY-SA 2.0</li><li><span>第 6 天</span> Kawarau Gorge Suspension Bridge 001 · Ramón · CC BY-SA 2.0</li><li><span>第 6 天</span> Old Cromwell Town, Central Otago · AnnWoolliams · CC BY-SA 4.0</li><li><span>第 7 天</span> Queenstown – Wakatipu Lake &amp; Remarkable Mountains view from Skyline Gondola · — · Public domain</li><li><span>第 7 天</span> TSS Earnslaw Steamship Lake Whakatipu 2024 01 · Librarian Conan · CC0</li><li><span>第 7 天</span> Jump from nevis bungee platform · Che010 · CC BY-SA 3.0</li><li><span>第 8 天</span> Lake Te Anau 06 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 8 天</span> Lake Te Anau, Kepler Track, New Zealand (002) · Michal Klajban · CC BY-SA 4.0</li><li><span>第 8 天</span> Surroundings of the Te Anau Glowworm Caves 04 · Szilas · CC BY-SA 4.0</li><li><span>第 9 天</span> Mitre Peak of Milford Sound, February 2015 · Bernard Spragg · CC0</li><li><span>第 9 天</span> Mirror Lakes Fiordland NZ · MurielBendel · CC BY-SA 4.0</li><li><span>第 9 天</span> Homer Tunnel 01 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 10 天</span> Lake Pukaki 20 · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 10 天</span> Lindis Pass, Otago, New Zealand · Charlie Mitchell · CC BY-SA 4.0</li><li><span>第 10 天</span> Marko Lake Pukaki, Mount Cook Far Away · Mark Oliver Dittrich · Public domain</li><li><span>第 11 天</span> Hooker Valley Pano · Christian Mehlführer · CC BY 3.0</li><li><span>第 11 天</span> Icebergs in Hooker Glacier Lake in front of Aoraki Mount Cook · Pseudopanax · CC BY 3.0</li><li><span>第 11 天</span> View from glacial moraine wall across Tasman Glacier terminal and lake · Pseudopanax · CC BY 3.0</li><li><span>第 12 天</span> Church of the Good Shepherd, Lake Tekapo 03 · Michal Klajban · CC BY-SA 4.0</li><li><span>第 12 天</span> Mount John University Observatory (9618676129) · Bernard Spragg · CC0</li><li><span>第 12 天</span> Church of good Shepherd, lake Tekapo, stargazing view 4 · Sky_xe · CC BY-SA 4.0</li><li><span>第 13 天</span> Eudyptula family exiting burrow（澳洲拍攝，同種範例） · JJ Harrison · CC BY-SA 3.0</li><li><span>第 13 天</span> Elephant Rocks MRD 01 · Mike Dickison · CC BY 4.0</li><li><span>第 13 天</span> Steampunk Oamaru · Reinhard Dietrich · CC0</li><li><span>第 14 天</span> Harbour Board Building and Maude&#x27;s Store, Oamaru · Pseudopanax · Public domain</li><li><span>第 14 天</span> Christchurch_Tram_at_Worcester_Street · Krzysztof Golik · CC BY-SA 4.0</li><li><span>第 14 天</span> New Regent Street. Christchurch. NZ. (49312698126) · Bernard Spragg · CC0</li></ul>
 <p>照片取自 Wikimedia Commons，依各自授權使用。距離與車程為約略數字，冬季請多預留 20–30% 時間；營地與景點開放情況請出發前再確認。</p>
 </footer>
 <style>
