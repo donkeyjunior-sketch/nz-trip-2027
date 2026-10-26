@@ -148,6 +148,24 @@ td.r, th.r { text-align: right; }
 .ctbl { min-width: 1100px; }
 .ctbl td:nth-child(1), .ctbl td:nth-child(3), .ctbl td:nth-child(8), .ctbl td:nth-child(9), .ctbl th { white-space: nowrap; }
 .cnote2 { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.panel header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.gearp header { background: color-mix(in srgb, var(--accent) 10%, var(--card)); }
+.drivep header { background: color-mix(in srgb, var(--warm) 12%, var(--card)); }
+.pico { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--card); }
+.gearp .pico { background: var(--accent); } .drivep .pico { background: var(--warm); }
+.pico svg { width: 22px; height: 22px; }
+.panel h3 { font-family: var(--display); font-weight: 900; font-size: 20px; margin: 0; line-height: 1.25; }
+.panel header p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+.panel ul { list-style: none; margin: 0; padding: 4px 20px 8px; }
+.panel li { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 4px 14px; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 14.5px; }
+.panel li:last-child { border-bottom: 0; }
+.panel li b { color: var(--fg); font-size: 15px; }
+.panel li span { color: var(--muted); }
+.panel li a { color: var(--accent); }
+@media (max-width: 860px) { .panels { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .panel li { grid-template-columns: 1fr; gap: 2px; } .panel header, .panel ul { padding-left: 16px; padding-right: 16px; } }
 td small { color: var(--muted); font-size: 12px; }
 .camp .note { font-size: 13.5px; color: var(--muted); }
 .body h3 { font-size: 13px; margin: 0 0 4px; font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; color: var(--warm); font-weight: 600; }
@@ -280,22 +298,30 @@ footer li span { color: var(--fg); }
 <tbody><tr><td class="num"><a href="#day3">3</a></td><td>Mt John Summit Track</td><td>來回約 2.5–3 小時</td><td>中等</td></tr><tr><td class="num"><a href="#day4">4</a></td><td>Sealy Tarns Track</td><td>來回約 3.5–4 小時</td><td>難・約 2,200 階、爬升 600 m</td></tr><tr><td class="num"><a href="#day5">5</a></td><td>Hooker Valley Track</td><td>來回約 3 小時</td><td>簡單・吊橋 3 座</td></tr><tr><td class="num"><a href="#day7">7</a></td><td>Rocky Mountain Summit Track</td><td>約 3 小時（環線）</td><td>中等偏難・陡坡</td></tr><tr><td class="num"><a href="#day8">8</a></td><td>Sawpit Gully Trail（Arrowtown）</td><td>約 2.5–3 小時（環線）</td><td>中等</td></tr><tr><td class="num"><a href="#day9">9</a></td><td>Queenstown Hill Time Walk</td><td>來回約 2–3 小時</td><td>中等偏難・爬升約 500 m</td></tr><tr><td class="num"><a href="#day10">10</a></td><td>Kepler Track：Control Gates → Brod Bay</td><td>來回約 3 小時</td><td>簡單・平緩</td></tr><tr><td class="num"><a href="#day13">13</a></td><td>Tunnel Beach Track</td><td>來回約 1 小時</td><td>中等・回程陡上坡</td></tr></tbody>
 </table></div>
 <p class="cnote2">時間依 DOC 與當地旅遊局標示，以大人步速估算，帶小孩多抓 20–30%。每天的其他選項寫在當天行程裡。冬天步道可能結冰或積雪，出發前看 <a href="https://www.doc.govt.nz/parks-and-recreation/know-before-you-go/alerts/" target="_blank" rel="noopener">DOC 步道警示</a>，穿防水登山鞋，下午 3 點半前回到車上。</p>
-<h2 style="margin-top:28px">健行裝備</h2>
-<ul class="winter gear">
-<li><b>防水登山鞋</b>每人一雙，出發前先穿一陣子磨合；冬天步道常有泥濘和積水。</li>
-<li><b>健行衣物</b>洋蔥式穿法：保暖中層，外面防水或防潑水的外套與褲子。</li>
-<li><b>登山杖 × 3</b>用借的；下坡、結冰路段比較穩。</li>
-<li><b>望遠鏡</b>看企鵝、海豹、鳥和遠處的冰河，Moeraki、Katiki Point、Oamaru 都用得到。</li>
-<li><b>其他已列</b>冰爪 × 4（Sealy Tarns 階梯必備）、毛帽與手套、頭燈（觀星、傍晚看企鵝要用）。</li>
+<div class="panels">
+<section class="panel gearp">
+<header><span class="pico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l1 4H7z"/><path d="M6 7h12v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/><path d="M10 11h4"/></svg></span><div><h3>健行裝備</h3><p>出發前準備好，每天健行都用得到</p></div></header>
+<ul>
+<li><b>防水登山鞋</b><span>每人一雙，出發前先穿一陣子磨合；冬天步道常有泥濘和積水。</span></li>
+<li><b>健行衣物</b><span>洋蔥式穿法：保暖中層，外面防水或防潑水的外套與褲子。</span></li>
+<li><b>登山杖 × 3</b><span>用借的；下坡、結冰路段比較穩。</span></li>
+<li><b>冰爪 × 4</b><span>Sealy Tarns 階梯必備，其他結冰步道也用得到。</span></li>
+<li><b>望遠鏡</b><span>看企鵝、海豹、鳥和遠處的冰河，Moeraki、Katiki Point、Oamaru 都用得到。</span></li>
+<li><b>毛帽、手套、頭燈</b><span>觀星、傍晚看企鵝要用頭燈。</span></li>
 </ul>
-<ul class="winter">
-<li><b>開車時間</b>冬天清晨與傍晚路面容易結黑冰：長途日天亮後約半小時（09:00 左右）出發；翻 Lindis Pass、走 Kawarau 峽谷這類背陰山路的日子排 10:00 後出發，讓山口中午前後通過。每天 16:00 前到營地，不開夜車；不走 Crown Range。</li>
-<li><b>靠左行駛</b>紐西蘭靠左開，路口與圓環特別留意。</li>
-<li><b>日照約 9 小時</b>每天約 8:00–8:30 日出、17:00–17:20 日落（每天行程下有當地時間），避免天黑後開山路。</li>
-<li><b>氣溫</b>每天標示的是當地 6、7 月的平均低溫與高溫（NIWA 1991–2020），山區與清晨可能更冷。</li>
-<li><b>路況與雪鏈</b>每天出發前查 <a href="https://www.journeys.nzta.govt.nz/" target="_blank" rel="noopener">NZTA 路況</a>，山口可能需要雪鏈或臨時封閉。</li>
-<li><b>預約清單</b>營地、Milford 遊船、Glowworm Caves、觀星與藍企鵝都要提早訂。</li>
+</section>
+<section class="panel drivep">
+<header><span class="pico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/></svg></span><div><h3>冬季開車須知</h3><p>每天出發前看一眼</p></div></header>
+<ul>
+<li><b>開車時間</b><span>清晨與傍晚路面容易結黑冰：長途日天亮後（08:30–09:00）出發；翻 Lindis Pass、走 Kawarau 峽谷的日子 10:00 後出發，讓山口中午前後通過。每天 16:00 前到營地，不開夜車；不走 Crown Range。</span></li>
+<li><b>路況與雪鏈</b><span>每天出發前查 <a href="https://www.journeys.nzta.govt.nz/" target="_blank" rel="noopener">NZTA 路況</a>，山口可能需要雪鏈或臨時封閉。</span></li>
+<li><b>靠左行駛</b><span>紐西蘭靠左開，路口與圓環特別留意。</span></li>
+<li><b>日照約 9 小時</b><span>每天約 8:00–8:30 日出、17:00–17:20 日落（每天行程下有當地時間）。</span></li>
+<li><b>氣溫</b><span>每天標示的是當地 6、7 月平均低溫與高溫（NIWA 1991–2020），山區與清晨可能更冷。</span></li>
+<li><b>預約清單</b><span>營地、Milford 遊船、Glowworm Caves、觀星與藍企鵝都要提早訂。</span></li>
 </ul>
+</section>
+</div>
 </section>
 <div class="days">
 <section class="farewell flight" id="day0">
