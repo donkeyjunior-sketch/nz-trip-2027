@@ -1,0 +1,469 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f6f79'/%3E%3Ccircle cx='47' cy='18' r='6.5' fill='%23e8b04a'/%3E%3Cpath d='M4 54 L23 20 L33 37 L41 26 L60 54 Z' fill='%23dfeced'/%3E%3Cpath d='M23 20 L17.4 30 L21 28.6 L23.5 31.5 L26.4 28.4 L28.6 29.4 Z M41 26 L37.3 31.4 L40 30.6 L42 32.6 L44.6 30.6 Z' fill='%23fff'/%3E%3C/svg%3E">
+<title>銀河 · 南島冬季之旅 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* Layout: a road-trip field journal. Cover + overview map, then one spread per day: photo left, logbook right. */
+:root {
+--bg: #eef3f4;      /* glacier paper */
+--card: #ffffff;
+--fg: #142327;
+--muted: #56686d;
+--line: #d3dde0;
+--accent: #0f6f79;  /* glacial meltwater teal */
+--warm: #a8741b;    /* tussock ochre */
+--tint: #dfeced;
+--display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+--body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+--data: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+--bg: #0e1719; --card: #152226; --fg: #e4eef0; --muted: #94a8ad; --line: #26373c;
+--accent: #5cc0ca; --warm: #ddb15a; --tint: #18303a; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.7; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-family: var(--data); font-variant-numeric: tabular-nums; }
+/* cover */
+.cover { padding-block: 48px 24px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+.eyebrow { font-family: var(--data); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; font-size: 15px; margin: 0; }
+.cover h1 { font-family: var(--display); font-weight: 900; font-size: clamp(36px, 6vw, 64px); line-height: 1.15; margin: 8px 0 12px; text-wrap: balance; }
+.cover h1 small { display: block; font-family: var(--data); font-weight: 600; font-size: .38em; letter-spacing: .06em; color: var(--muted); margin-top: 6px; }
+.lede { color: var(--muted); max-width: 34em; margin: 0 0 20px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; padding: 0; list-style: none; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font-family: var(--data); font-size: 34px; line-height: 1; font-weight: 700; }
+.facts span { font-size: 13px; color: var(--muted); }
+.who { margin-top: 22px; font-size: 14px; color: var(--muted); display: grid; gap: 4px; }
+.who i { font-style: normal; display: inline-block; width: 22px; border-top: 2px solid var(--accent); vertical-align: middle; margin-right: 8px; }
+.who i.r { border-top: 2px dashed #d0612f; }
+.who i.g { border-top-color: #1D9E75; }
+.map { --p: var(--fg); --ts: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 8px; max-width: 100%; }
+.map svg { width: 100%; height: auto; display: block; }
+.map .th { font: 500 13px var(--body); fill: var(--fg); }
+.map .ts { font: 400 11.5px var(--body); fill: var(--muted); }
+.map .num { font: 700 10px var(--data); fill: #fff; }
+/* day nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-block: 10px; scrollbar-width: thin; }
+.nav a { flex: 0 0 auto; text-decoration: none; color: var(--fg); border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 2px 12px; display: flex; gap: 6px; align-items: baseline; font-family: var(--data); font-size: 15px; }
+.nav a b { font-weight: 700; color: var(--accent); }
+.nav a span { color: var(--muted); font-size: 13px; }
+.nav a:hover { border-color: var(--accent); }
+/* overview */
+.block { padding-block: 36px 8px; }
+.block h2, .day h2 { font-family: var(--display); font-weight: 900; text-wrap: balance; }
+.block h2 { font-size: 26px; margin: 0 0 14px; }
+.tablebox { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14.5px; }
+th, td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--data); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-size: 17px; }
+td.r, th.r { text-align: right; }
+.winter { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; margin-top: 18px; padding: 0; list-style: none; }
+.winter li { font-size: 14.5px; color: var(--muted); }
+.winter b { display: block; color: var(--fg); font-size: 15px; }
+/* day spreads */
+.days { display: grid; gap: 28px; padding-block: 28px 12px; }
+.day { scroll-margin-top: 70px; display: grid; grid-template-columns: minmax(0, 1fr); background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.photo { margin: 0; position: relative; background: var(--tint); aspect-ratio: 16 / 6; max-height: 340px; width: 100%; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pmain { position: absolute; inset: 0; }
+.photo.has3 { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 3px; background: var(--card); min-height: 560px; }
+.photo.has3 .fimg, .photo.has3 img { position: absolute; inset: 0; }
+.photo.has3 .pmain { position: relative; inset: auto; min-height: 0; overflow: hidden; }
+.thumbs { display: contents; }
+.thumbs figure { margin: 0; position: relative; min-height: 0; overflow: hidden; background: var(--tint); }
+.thumbs.t3 { grid-template-columns: 1fr 1fr 1fr; }
+.fimg { width: 100%; height: 100%; background-size: cover; background-position: center; }
+.thumbs figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 10px 6px; font-size: 12px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.6)); }
+.photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px 16px 10px; font-size: 12.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
+.badge { position: absolute; top: 14px; left: 14px; background: rgba(12, 28, 32, .82); color: #fff; border-radius: 10px; padding: 6px 12px; display: flex; flex-direction: column; line-height: 1.15; }
+.badge .dn { font-family: var(--data); font-weight: 700; font-size: 22px; letter-spacing: .04em; }
+.badge .dd { font-size: 12.5px; opacity: .85; }
+.body { padding: 24px 26px 22px; min-width: 0; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 0 32px; align-items: start; }
+.bl, .br { min-width: 0; }
+.bl .wx { margin-top: 14px; }
+.day h2 { font-size: 26px; margin: 0; line-height: 1.3; }
+.route { font-family: var(--data); font-size: 21px; font-weight: 600; letter-spacing: .02em; margin: 4px 0 14px; color: var(--accent); }
+.route .arrow { color: var(--muted); padding: 0 2px; }
+.route .stay { font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+.stats { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 26px; margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats dt { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+.stats dd { margin: 0; }
+.stats dd.num { font-size: 26px; font-weight: 700; line-height: 1.1; white-space: nowrap; }
+.stats .via dd { font-family: var(--data); font-size: 16px; line-height: 1.3; padding-top: 4px; }
+.camp { display: grid; gap: 0; margin-bottom: 14px; }
+.cbox .cio { display: grid; grid-template-columns: 1fr 1fr; margin: auto -12px -10px; padding: 8px 12px 10px; border-top: 1px dashed var(--line); border-radius: 0 0 9px 9px; }
+.cbox .note { margin-bottom: 10px; }
+.cbox.g .cio { background: color-mix(in srgb, var(--warm) 9%, var(--card)); }
+.cbox.c .cio { background: color-mix(in srgb, var(--accent) 9%, var(--card)); }
+.cio div { display: flex; flex-direction: column; min-width: 0; }
+.cio div + div { border-left: 1px solid var(--line); padding-left: 10px; }
+.cio span { font-size: 11.5px; color: var(--muted); letter-spacing: .06em; }
+.cio em { font-style: normal; white-space: nowrap; }
+.cio em b { font-family: var(--data); font-size: 18px; line-height: 1.25; color: var(--fg); }
+.cio em b.tbd { font-size: 14px; color: var(--muted); font-weight: 600; }
+.cio small { font-size: 12px; color: var(--muted); margin-left: 3px; }
+.cio p { grid-column: 1 / -1; margin: 6px 0 0; font-size: 12px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 480px) { .cbox .cio { margin: auto -8px -8px; padding: 6px 8px 8px; } .cio em b { font-size: 15px; } }
+.lbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; font-weight: 600; color: var(--warm); }
+.camp b { font-size: 17px; }
+.camp b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.camp b a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+.camp .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.camp2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
+.cbox { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0; }
+.cbox.g { border-top: 3px solid var(--warm); }
+.cbox.c { border-top: 3px solid var(--accent); }
+.cbox .clbl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+.cbox.g .clbl { color: var(--warm); } .cbox.c .clbl { color: var(--accent); }
+.cbox b { font-size: 15px; line-height: 1.35; }
+.cbox b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.cbox .lk { display: block; font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin: 0 0 2px; }
+.cbox .note { font-size: 13px; color: var(--muted); margin-top: 4px; }
+@media (max-width: 480px) { .camp2 { gap: 6px; } .cbox { padding: 8px 8px; } .cbox b { font-size: 14px; } .cbox .cmeta, .cbox .note { font-size: 12px; } }
+.cmeta, .camp .cmeta { font-size: 13px; color: var(--muted); }
+.cbox .cmeta a.gr { color: var(--warm); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.cbox .cmeta a.gr:hover, .cbox .cmeta a.cm:hover { text-decoration: underline; }
+.camp .cmeta .star { color: var(--warm); font-weight: 600; }
+.camp .cmeta a.cm { color: var(--accent); font-weight: 600; text-decoration: none; }
+.alt { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--tint); border-radius: 0 8px 8px 0; display: grid; }
+.alt.same { display: block; font-size: 13px; color: var(--muted); }
+.alt .albl { font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; color: var(--accent); margin-right: 8px; }
+.alt b { font-size: 15px; }
+.alt b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.alt .lk { font-family: var(--data); font-weight: 600; font-size: 12px; color: var(--accent); margin-left: 8px; }
+.camp .cmeta s { color: #c0392b; }
+.ctbl { min-width: 1100px; }
+.ctbl td:nth-child(1), .ctbl td:nth-child(3), .ctbl td:nth-child(8), .ctbl td:nth-child(9), .ctbl th { white-space: nowrap; }
+.cnote2 { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.panel header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
+.gearp header { background: color-mix(in srgb, var(--accent) 10%, var(--card)); }
+.drivep header { background: color-mix(in srgb, var(--warm) 12%, var(--card)); }
+.pico { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--card); }
+.gearp .pico { background: var(--accent); } .drivep .pico { background: var(--warm); }
+.pico svg { width: 22px; height: 22px; }
+.panel h3 { font-family: var(--display); font-weight: 900; font-size: 20px; margin: 0; line-height: 1.25; }
+.panel header p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+.panel ul { list-style: none; margin: 0; padding: 4px 20px 8px; }
+.panel li { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: 4px 14px; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: 14.5px; }
+.panel li:last-child { border-bottom: 0; }
+.panel li b { color: var(--fg); font-size: 15px; }
+.panel li span { color: var(--muted); }
+.panel li a { color: var(--accent); }
+@media (max-width: 860px) { .panels { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .panel li { grid-template-columns: 1fr; gap: 2px; } .panel header, .panel ul { padding-left: 16px; padding-right: 16px; } }
+td small { color: var(--muted); font-size: 12px; }
+.camp .note { font-size: 13.5px; color: var(--muted); }
+.body h3 { font-size: 13px; margin: 0 0 4px; font-family: var(--data); text-transform: uppercase; letter-spacing: .1em; color: var(--warm); font-weight: 600; }
+.sights { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 0; }
+.sights li { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 10px; line-height: 1.5; padding: 6px 0; border-top: 1px dashed var(--line); }
+.sights li:first-child { border-top: 0; }
+.sights time { font-family: var(--data); font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; color: var(--accent); white-space: nowrap; padding-top: 1px; }
+.sights li > div { display: grid; min-width: 0; }
+.sights b { font-weight: 600; font-size: 15px; }
+.sights li > div > span { font-size: 14px; color: var(--muted); }
+.sights b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.sights b a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+.sights .opts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; }
+.sights .opts em { font-style: normal; font-size: 12.5px; color: var(--muted); margin-right: 2px; }
+.sights .opts a { font-size: 13px; text-decoration: none; color: var(--accent); border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 2px 10px; max-width: 100%; overflow-wrap: anywhere; }
+.sights .opts a:hover { border-color: var(--accent); }
+.sights .opts .star { font-style: normal; color: var(--warm); font-weight: 600; }
+.sights .opts small { color: var(--muted); font-size: 11.5px; }
+.sights .optnote { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+.sights .lk { font-family: var(--data); font-weight: 600; font-size: 12px; letter-spacing: .06em; color: var(--accent); margin-left: 8px; }
+.wx { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 8px; margin: 0 0 6px; }
+.wx > div { background: var(--tint); border-radius: 10px; padding: 8px 12px; display: grid; gap: 2px; }
+.wx span { font-family: var(--data); font-size: 12px; letter-spacing: .06em; color: var(--muted); }
+.wx b { font-family: var(--data); font-variant-numeric: tabular-nums; font-size: 17px; font-weight: 600; color: var(--fg); }
+.wxnote { margin: 0 0 14px; font-size: 13px; color: var(--muted); }
+.wx + .hikes, .wx + .tip { margin-top: 8px; }
+.hikes { margin: 0 0 14px; border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.hikes h3 { margin-bottom: 6px; }
+.hikes ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.hikes li { display: grid; gap: 1px; line-height: 1.5; }
+.hikes li + li { border-top: 1px dashed var(--line); padding-top: 10px; }
+.hikes b { font-weight: 600; font-size: 15px; }
+.hikes b a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.hikes b a:hover { color: var(--accent); }
+.hstar { font-family: var(--data); font-size: 11.5px; font-weight: 600; color: var(--card); background: var(--accent); border-radius: 999px; padding: 1px 8px; margin-left: 8px; vertical-align: 2px; }
+.hmeta { font-family: var(--data); font-size: 13px; color: var(--warm); font-weight: 600; }
+.hd { font-size: 14px; color: var(--muted); }
+.hnone { margin: 0; font-size: 14px; color: var(--muted); }
+.htbl td:nth-child(1), .htbl td:nth-child(3), .htbl th { white-space: nowrap; }
+.tip { margin: 0; font-size: 14px; background: var(--tint); border-radius: 10px; padding: 10px 14px; }
+.tip .lbl { margin-right: 8px; color: var(--accent); }
+.day:nth-child(odd) .photo { order: 0; }
+/* farewell */
+.farewell { scroll-margin-top: 70px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 26px; display: grid; gap: 14px; }
+.farewell h2 { margin: 0; font-size: 26px; }
+.fl { min-width: 480px; }
+.fl b { font-size: 17px; }
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.split div { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.split b { font-family: var(--data); font-size: 22px; display: block; }
+.split span { color: var(--muted); font-size: 14px; }
+.split .roy b { color: #d0612f; } .split .marg b { color: #1D9E75; }
+footer { padding-block: 32px 48px; font-size: 12.5px; color: var(--muted); }
+footer h2 { font-size: 15px; font-family: var(--body); margin: 0 0 6px; color: var(--fg); }
+footer details.cred { margin: 0 0 12px; }
+footer details.cred summary { cursor: pointer; font-size: 15px; font-weight: 600; color: var(--fg); list-style: none; display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+footer details.cred summary::-webkit-details-marker { display: none; }
+footer details.cred summary::before { content: '▸'; color: var(--accent); transition: transform .15s; }
+footer details.cred[open] summary::before { transform: rotate(90deg); }
+footer details.cred summary small { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+footer details.cred ul { margin-top: 6px; }
+footer ul { margin: 0 0 12px; padding-left: 18px; display: grid; gap: 2px; }
+footer li span { color: var(--fg); }
+@media (max-width: 760px) {
+.cover { grid-template-columns: 1fr; padding-block: 28px 16px; }
+.day { grid-template-columns: 1fr; }
+.day:nth-child(odd) .photo { order: 0; }
+.photo { min-height: 0; aspect-ratio: 4 / 3; max-width: 100%; max-height: none; }
+.body { grid-template-columns: minmax(0, 1fr); }
+.photo.has3 { aspect-ratio: auto; grid-template-rows: none; }
+.photo.has3 .pmain, .photo.has3 .thumbs figure { aspect-ratio: 3 / 2; }
+.body { padding: 18px 18px 18px; }
+.stats { grid-template-columns: auto auto; }
+.stats .via { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+.tabs{background:var(--card);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;gap:4px;padding-block:8px}
+.tabs a{text-decoration:none;color:var(--muted);font-weight:500;padding:6px 14px;border-radius:999px;font-size:15px}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+
+
+.hero2{padding-block:36px 6px}
+.hero2 h1{font-family:var(--display);font-weight:900;font-size:clamp(32px,5vw,52px);line-height:1.15;margin:8px 0 10px}
+.keyfacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin:14px 0 0;padding:0;list-style:none}
+.keyfacts li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--muted)}
+.keyfacts b{display:block;color:var(--fg);font-family:var(--display);font-weight:900;font-size:19px;margin-bottom:2px}
+.nt td{vertical-align:top}
+.nt td small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.nt td.num{white-space:nowrap}
+.lv{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 8px;margin-right:6px;vertical-align:1px}
+.lv.l2{background:var(--accent);color:var(--card)}
+.lv.l1{border:1px solid var(--accent);color:var(--accent)}
+.mwps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.mwp{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.mwp header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.ip header{background:color-mix(in srgb,var(--accent) 10%,var(--card))}
+.nk header{background:color-mix(in srgb,var(--warm) 12%,var(--card))}
+.pico{flex:0 0 40px;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--card);font-weight:900;font-size:13px;font-family:var(--data)}
+.ip .pico{background:var(--accent)}.nk .pico{background:var(--warm)}
+.mwp h3{font-family:var(--display);font-weight:900;font-size:20px;margin:0;line-height:1.25}
+.mwp header p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.mwp .pb{padding:6px 20px 16px}
+.mwp h4{font-size:15px;margin:14px 0 6px;color:var(--fg)}
+.mws{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14.5px;color:var(--muted)}
+.mws b{color:var(--fg)}
+.set{width:100%;border-collapse:collapse;font-size:14px;min-width:0}
+.set th,.set td{padding:7px 8px;border-bottom:1px dashed var(--line);text-align:left;vertical-align:top}
+.set th{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+.set td:first-child{color:var(--fg);font-weight:600;white-space:nowrap}
+.set tr:last-child td{border-bottom:0}
+.lens{width:100%;border-collapse:collapse;font-size:13.5px;min-width:0}
+.lens th,.lens td{padding:7px 8px;border-bottom:1px dashed var(--line);text-align:left}
+.lens th{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:12px;color:var(--muted);font-weight:600}
+.lens td.num{font-family:var(--data);white-space:nowrap}
+.lens tr:last-child td{border-bottom:0}
+.tipbox{background:var(--tint);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--muted);margin-top:12px}
+.tipbox b{color:var(--fg)}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin:0;padding:0;list-style:none}
+.checks li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14.5px;color:var(--muted)}
+.checks b{display:block;color:var(--fg);font-size:15.5px;margin-bottom:4px}
+@media (max-width:900px){.mwps{grid-template-columns:1fr}}
+@media (max-width:700px){
+.nt{min-width:0}.nt thead{display:none}.nt,.nt tbody,.nt tr,.nt td{display:block}
+.nt tr{padding:12px 16px;border-bottom:1px solid var(--line)}.nt tr:last-child{border-bottom:0}
+.nt td{border:0;padding:2px 0}.nt td.num:first-child{font-weight:700}.nt td.num:first-child small{display:inline;margin-left:6px}
+.nt td:nth-child(2){display:inline-block;margin-right:8px}.nt td:nth-child(3){display:inline-block;color:var(--muted);font-size:13px}
+.nt td:nth-child(3):before{content:"全黑 "}
+.mwp .pb{padding:4px 16px 14px}.mwp header{padding:14px 16px}
+}
+</style></head><body><nav class="tabs" aria-label="頁面"><div class="wrap"><a href="./">行程</a><a href="flights.html">航班</a><a href="motorhome.html">露營車</a><a href="roads.html">路況</a><a href="milkyway.html" aria-current="page">銀河</a><a href="expenses.html">費用</a></div></nav>
+<div class="wrap">
+  <header class="hero2">
+    <p class="eyebrow">Milky Way</p>
+    <h1>拍銀河</h1>
+    <p class="lede">這趟剛好碰上新月前後（7/4 新月），每晚天黑後到午夜都沒有月光，加上麥肯齊盆地是國際暗空保護區，是拍銀河的好機會。下面是 iPhone 15 Pro 和 Nikon D5500 的設定與做法。</p>
+    <ul class="keyfacts">
+      <li><b>18:50 以後</b>天完全黑（天文暮光結束）；銀河核心天黑後在東方升起，21:00–24:00 最高、最清楚</li>
+      <li><b>腳架一定要</b>兩台都要固定不動；手機用手機夾＋小腳架</li>
+      <li><b>不開夜車</b>照行程守則，只在營地或走路可到的地方拍</li>
+      <li><b>很冷</b>約 −3°C：電池會掉很快，備用電池放口袋保溫</li>
+    </ul>
+  </header>
+
+  <section class="sec">
+    <h2>每晚拍攝條件</h2>
+    <p class="lede2">「全黑」是天文暮光結束、天空最暗的時間；月相與升落以當地時間計算。實際還要看雲量，出發前查 MetService。</p>
+    <div class="tablebox"><table class="nt"><thead><tr><th>日期</th><th>地點</th><th>全黑</th><th>月亮</th><th>去哪拍</th></tr></thead><tbody><tr><td class="num">6/27<small>週日</small></td><td><b>Tekapo</b></td><td class="num">18:52</td><td>殘月，00:11 才升起<small>整晚都暗</small></td><td><span class="lv l2">最佳</span>好牧羊人教堂（營地走路約 10 分鐘）＋湖面；Dark Sky Project 觀星導覽同一晚</td></tr><tr><td class="num">6/28<small>週一</small></td><td><b>Glentanner</b></td><td class="num">18:54</td><td>殘月，01:18 才升起<small>整晚都暗</small></td><td><span class="lv l2">最佳</span>營地外圍空曠草原，四周幾乎沒有光害；前景可放雪山稜線</td></tr><tr><td class="num">6/29<small>週二</small></td><td><b>Glentanner</b></td><td class="num">18:55</td><td>殘月，02:27 才升起<small>整晚都暗</small></td><td><span class="lv l2">最佳</span>同上；前一晚沒拍好的備案</td></tr><tr><td class="num">6/30<small>週三</small></td><td><b>Twizel</b></td><td class="num">18:55</td><td>殘月，03:41 才升起<small>整晚都暗</small></td><td><span class="lv l1">不錯</span>營地旁空地即可（暗空保護區內），不開車去 Pukaki</td></tr><tr><td class="num">7/1<small>週四</small></td><td><b>Wanaka</b></td><td class="num">18:58</td><td>殘月，05:02 才升起<small>整晚都暗</small></td><td><span class="lv l1">不錯</span>湖邊步道；That Wanaka Tree 夜景（營地約 1.5 km，走路去）</td></tr><tr><td class="num">7/2<small>週五</small></td><td><b>Wanaka</b></td><td class="num">18:59</td><td>殘月，06:19 才升起<small>整晚都暗</small></td><td><span class="lv l1">不錯</span>同上；拍孤樹＋銀河</td></tr><tr><td class="num">7/5<small>週一</small></td><td><b>Te Anau</b></td><td class="num">19:05</td><td>新月<small>整晚都暗</small></td><td><span class="lv l1">不錯</span>湖畔（看完螢火蟲洞回來，約 20:00 後）</td></tr><tr><td class="num">7/8<small>週四</small></td><td><b>Oamaru</b></td><td class="num">18:54</td><td>細眉月，22:23 下山<small>22:23 後最暗</small></td><td>看完藍企鵝後，港邊或營地；月亮 22:20 左右下山</td></tr></tbody></table></div>
+  </section>
+
+  <section class="sec">
+    <h2>相機設定</h2>
+    <div class="mwps">
+      <section class="mwp ip">
+        <header><span class="pico" aria-hidden="true">15P</span><div><h3>iPhone 15 Pro</h3><p>用內建「夜間模式」，固定在腳架上最多可曝光 30 秒</p></div></header>
+        <div class="pb">
+          <h4>事前設定（只要做一次）</h4>
+          <ol class="mws">
+            <li><b>開 ProRAW</b>：設定 → 相機 → 格式 → 打開「ProRAW 與解析度控制」，拍完比較好後製。</li>
+            <li><b>關閃光燈</b>，螢幕亮度調低，避免影響眼睛的暗適應。</li>
+          </ol>
+          <h4>拍攝步驟</h4>
+          <ol class="mws">
+            <li><b>架好腳架</b>，選 <b>1×（主鏡頭，f/1.78）</b>，畫質最好；要拍教堂＋整片天空再用 0.5×，雜訊會比較多。</li>
+            <li>天夠暗時左上角會出現黃色<b>夜間模式</b>圖示；點它，把下方滑桿拉到<b>最大（30 秒）</b>。手機偵測到放在腳架上才會出現 30 秒。</li>
+            <li><b>對焦</b>：點畫面上最亮的星星或遠方燈光，長按到出現「AE/AF 鎖定」。</li>
+            <li>曝光補償稍微往下拉（約 −0.3），讓天空保持黑、星星不過曝。</li>
+            <li>開 <b>3 秒自拍計時</b>（或用 Apple Watch 遙控），避免按快門時晃動。</li>
+            <li>每個構圖多拍 3–4 張，挑最清楚的。</li>
+          </ol>
+          <div class="tipbox"><b>前景小技巧：</b>拍教堂或孤樹時，請家人用手電筒從側面「輕輕刷」前景 1–2 秒，前景就不會全黑。</div>
+        </div>
+      </section>
+      <section class="mwp nk">
+        <header><span class="pico" aria-hidden="true">D55</span><div><h3>Nikon D5500</h3><p>APS-C 片幅，用 M 手動模式＋RAW</p></div></header>
+        <div class="pb">
+          <h4>基本設定</h4>
+          <table class="set"><tbody>
+            <tr><td>模式</td><td>M 手動；影像品質 <b>RAW（NEF）</b></td></tr>
+            <tr><td>光圈</td><td>開到最大（數字最小）</td></tr>
+            <tr><td>快門</td><td>15–25 秒（依焦距，見下表）；再長星星會拉成線</td></tr>
+            <tr><td>ISO</td><td>3200–6400</td></tr>
+            <tr><td>白平衡</td><td>K 值 3900–4200K（或「白熾燈」），天空會偏藍</td></tr>
+            <tr><td>對焦</td><td>鏡頭切 <b>MF</b>、VR 防手震<b>關</b></td></tr>
+            <tr><td>降噪</td><td>「長時間曝光降噪」關（否則每張要等兩倍時間）</td></tr>
+            <tr><td>遙控</td><td>2 秒自拍、或 SnapBridge 手機遙控</td></tr>
+          </tbody></table>
+          <h4>依鏡頭的建議</h4>
+          <table class="lens"><thead><tr><th>鏡頭</th><th>光圈</th><th>快門</th><th>ISO</th></tr></thead><tbody>
+            <tr><td>18–55mm 套組鏡（18mm）</td><td class="num">f/3.5</td><td class="num">15–20 秒</td><td class="num">6400</td></tr>
+            <tr><td>10–20mm 廣角（10mm）</td><td class="num">f/4.5</td><td class="num">20–25 秒</td><td class="num">6400</td></tr>
+            <tr><td>11–20mm f/2.8 廣角（11mm）</td><td class="num">f/2.8</td><td class="num">20 秒</td><td class="num">3200</td></tr>
+            <tr><td>35mm f/1.8 DX（拼接用）</td><td class="num">f/1.8</td><td class="num">8 秒</td><td class="num">1600–3200</td></tr>
+          </tbody></table>
+          <h4>對焦到星星（最重要）</h4>
+          <ol class="mws">
+            <li>開<b>即時取景</b>，對準最亮的星星（或遠方燈光），按放大鍵放到最大。</li>
+            <li>慢慢轉對焦環，讓星星變成<b>最小、最銳利的點</b>。</li>
+            <li>用一小段膠帶把對焦環黏住，之後換構圖也不會跑焦。</li>
+          </ol>
+          <div class="tipbox"><b>先試拍一張</b>看螢幕：天空太亮就降 ISO，星星拉線就縮短快門。想拍星軌，可用相機內建的「間隔拍攝」連拍 100 張以上再疊圖。</div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>出門前檢查</h2>
+    <ul class="checks">
+      <li><b>腳架、手機夾</b>兩台都要；地面結霜時腳架張開壓低比較穩。</li>
+      <li><b>電池</b>D5500 備 2–3 顆 EN-EL14a，放外套內袋保溫；手機帶行動電源。</li>
+      <li><b>紅光頭燈</b>紅光不會破壞暗適應，也不打擾其他拍攝的人；不要開白光照天空。</li>
+      <li><b>保暖</b>最厚的外套、毛帽、手套；腳踩羊毛襪。拍一輪約 30–60 分鐘。</li>
+      <li><b>鏡頭起霧</b>帶擦鏡布；從暖的車內拿出來先放 10 分鐘再拍。</li>
+      <li><b>後製</b>手機用 Lightroom 調「曝光、對比、去朦朧」，白平衡偏冷一點，銀河會更清楚。</li>
+    </ul>
+  </section>
+</div>
+<footer class="wrap"><p>暮光與月亮時間以 astral 依各地經緯度計算（NZST）；相機設定是起點，現場依試拍結果微調。</p></footer>
+<style>
+/* unified page header + section headings (all tabs) */
+.cover,.hero,.hero2{padding-top:36px!important;align-items:start!important}
+.cover h1,.hero h1,.hero2 h1{font-size:clamp(32px,5vw,52px)!important;line-height:1.15!important;margin:8px 0 10px!important}
+.cover h1 small{font-size:.4em!important;margin-top:8px!important}
+.cover .lede,.hero .lede,.hero2 .lede{font-size:16px;color:var(--muted);max-width:40em;margin:0 0 20px}
+.block,.sec{padding-block:32px 6px!important}
+.block>h2,.sec>h2{font-family:var(--display);font-weight:900;font-size:26px!important;line-height:1.3;margin:0 0 14px!important}
+.block>h2+.lede2,.sec>h2+.lede2{margin-top:-8px!important}
+.lede2{font-size:14.5px!important;color:var(--muted)!important;max-width:44em;margin:0 0 16px!important}
+@media (max-width:760px){.cover,.hero,.hero2{padding-top:24px!important}.block,.sec{padding-block:26px 4px!important}.block>h2,.sec>h2{font-size:23px!important}}
+#totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:48px;height:48px;border-radius:50%;border:0;padding:0;background:var(--accent,#0f6f79);color:var(--card,#fff);box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s;-webkit-tap-highlight-color:transparent}
+#totop.show{opacity:.92;transform:none;pointer-events:auto}
+#totop:hover,#totop:focus-visible{opacity:1}
+#totop:focus-visible{outline:2px solid var(--fg,#142327);outline-offset:3px}
+#totop svg{width:22px;height:22px}
+@media (prefers-reduced-motion:reduce){#totop{transition:none}}
+@media print{#totop{display:none}}
+</style>
+<button id="totop" type="button" aria-label="回到頁面頂端" title="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){var b=document.getElementById('totop');if(!b)return;
+function u(){b.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>400)}
+window.addEventListener('scroll',u,{passive:true});u();
+b.addEventListener('click',function(){var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'});});})();
+</script><style>
+/* left sidebar navigation (replaces top tabs) */
+.leaflet-container{isolation:isolate;z-index:0}
+:root{--sidew:212px;--sidew-c:64px;--topbar:52px}
+body:has(nav.tabs){padding-left:var(--sidew);transition:padding-left .2s}
+body.side-collapsed:has(nav.tabs){padding-left:var(--sidew-c)}
+body nav.tabs{position:fixed;top:0;left:0;bottom:0;width:var(--sidew);z-index:60;background:var(--card);border-bottom:0;border-right:1px solid var(--line);overflow-y:auto;overflow-x:hidden;transition:width .2s,transform .22s}
+body.side-collapsed nav.tabs{width:var(--sidew-c)}
+body nav.tabs .wrap{display:flex;flex-direction:column;gap:4px;max-width:none;margin:0;padding:68px 10px 16px}
+body nav.tabs a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;font-size:15px;line-height:1.2;white-space:nowrap;color:var(--muted);text-decoration:none;font-weight:500}
+body nav.tabs a:hover{background:var(--tint);color:var(--fg)}
+body nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--card)}
+body nav.tabs a svg{flex:0 0 20px;width:20px;height:20px}
+body.side-collapsed nav.tabs a{justify-content:center;padding:10px 0}
+body.side-collapsed nav.tabs a .lab{display:none}
+.side-brand{position:fixed;top:0;left:0;z-index:61;height:60px;display:flex;align-items:center;gap:10px;padding:0 12px;width:var(--sidew);transition:width .2s;pointer-events:none}
+body.side-collapsed .side-brand{width:var(--sidew-c)}
+.side-brand b{font-family:var(--display);font-weight:900;font-size:16px;color:var(--fg);white-space:nowrap;overflow:hidden;padding-left:46px}
+body.side-collapsed .side-brand b{display:none}
+#sidetoggle{position:fixed;top:12px;left:12px;z-index:62;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
+#sidetoggle:hover{background:var(--tint)}
+#sidetoggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#sidetoggle svg{width:20px;height:20px}
+#sidebackdrop{display:none}
+.side-cur{display:none}
+@media (max-width:900px){
+  body:has(nav.tabs),body.side-collapsed:has(nav.tabs){padding-left:0;padding-top:var(--topbar)}
+  body nav.tabs,body.side-collapsed nav.tabs{width:250px;transform:translateX(-100%);box-shadow:none;padding-top:env(safe-area-inset-top,0px)}
+  body.side-open nav.tabs{transform:none;box-shadow:0 0 40px rgba(0,0,0,.25)}
+  body.side-collapsed nav.tabs a{justify-content:flex-start;padding:10px 12px}
+  body.side-collapsed nav.tabs a .lab{display:inline}
+  .side-brand{width:100%!important;height:var(--topbar);background:var(--card);border-bottom:1px solid var(--line);pointer-events:auto;z-index:59}
+  .side-brand b{display:block!important;padding-left:50px;font-size:15px}
+  .side-cur{display:inline;color:var(--accent);font-family:var(--body);font-weight:700;font-size:15px}
+  #sidetoggle{top:6px;left:max(10px,env(safe-area-inset-left,0px))}
+  body.side-open #sidebackdrop{display:block;position:fixed;inset:0;z-index:58;background:rgba(0,0,0,.35)}
+  body:has(nav.tabs) .nav{top:var(--topbar)}
+}
+@media print{nav.tabs,#sidetoggle,.side-brand{display:none!important}body:has(nav.tabs){padding:0!important}}
+</style>
+<div class="side-brand"><b>南島冬季之旅 2027 <span class="side-cur"></span></b></div>
+<button id="sidetoggle" type="button" aria-label="展開或收合選單" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+<div id="sidebackdrop"></div>
+<script>
+(function(){var nav=document.querySelector('nav.tabs');if(!nav)return;var b=document.body,mq=window.matchMedia('(max-width:900px)'),t=document.getElementById('sidetoggle');
+var IC={'./':'<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>','flights.html':'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>','motorhome.html':'<rect x="2" y="6" width="14" height="10" rx="1.5"/><path d="M16 9h3l3 3v4h-6"/><circle cx="6.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>','drone.html':'<circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="M7 7l2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/>','roads.html':'<path d="M8 3 4 21M16 3l4 18M12 4v2.5M12 10.5v3M12 17.5v2.5"/>','milkyway.html':'<path d="M12 3l2.2 5.6L20 9.3l-4.5 3.8L17 19l-5-3.2L7 19l1.5-5.9L4 9.3l5.8-.7z"/>','expenses.html':'<rect x="2.5" y="6" width="19" height="13" rx="2"/><path d="M2.5 10h19M16 14.5h2.5"/>'};
+nav.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href');var lab=a.textContent.trim();a.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(IC[h]||'<circle cx="12" cy="12" r="8"/>')+'</svg><span class="lab">'+lab+'</span>';a.title=lab;if(a.getAttribute('aria-current')==='page'){var c=document.querySelector('.side-cur');if(c)c.textContent='· '+lab;}});
+function get(){try{return localStorage.getItem('sideCollapsed')==='1'}catch(e){return false}}
+function set(v){try{localStorage.setItem('sideCollapsed',v?'1':'0')}catch(e){}}
+function sync(){if(mq.matches){b.classList.remove('side-collapsed');t.setAttribute('aria-expanded',b.classList.contains('side-open'))}else{b.classList.remove('side-open');b.classList.toggle('side-collapsed',get());t.setAttribute('aria-expanded',!get())}}
+t.addEventListener('click',function(){if(mq.matches){b.classList.toggle('side-open')}else{set(!get())}sync()});
+document.getElementById('sidebackdrop').addEventListener('click',function(){b.classList.remove('side-open');sync()});
+nav.addEventListener('click',function(e){if(e.target.closest('a')&&mq.matches){b.classList.remove('side-open')}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.classList.contains('side-open')){b.classList.remove('side-open');sync();t.focus()}});
+(mq.addEventListener?mq.addEventListener('change',sync):mq.addListener(sync));sync();})();
+</script></body></html>
