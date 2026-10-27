@@ -160,6 +160,8 @@ footer li span { color: var(--fg); }
 .card a{color:var(--accent);text-decoration:none;overflow-wrap:anywhere}
 .card a:hover{text-decoration:underline}
 #contact .cards{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+#lpg .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:700px){#lpg .cards{grid-template-columns:minmax(0,1fr)}}
 .beds{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .bed{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--card)}
 .bed b{display:block;font-size:16px}
