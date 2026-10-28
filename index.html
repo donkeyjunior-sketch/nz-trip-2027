@@ -95,6 +95,8 @@ td.r, th.r { text-align: right; }
 .bl .wx { margin-top: 14px; }
 .day h2 { font-size: 26px; margin: 0; line-height: 1.3; }
 .route { font-family: var(--data); font-size: 21px; font-weight: 600; letter-spacing: .02em; margin: 4px 0 14px; color: var(--accent); }
+.route .rtlk { display: inline-block; vertical-align: 3px; margin-left: 10px; font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+.route .rtlk:hover, .route .rtlk:focus-visible { background: var(--accent); color: var(--card); }
 .route .arrow { color: var(--muted); padding: 0 2px; }
 .route .stay { font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 6px; }
 .stats { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 4px 26px; margin: 0 0 16px; padding: 12px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -369,7 +371,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>抵達 Christchurch</h2>
-<p class="route">Christchurch Airport <span class="arrow" aria-hidden="true">→</span> Christchurch</p>
+<p class="route">Christchurch Airport <span class="arrow" aria-hidden="true">→</span> Christchurch <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Christchurch%20Airport%2C%20New%20Zealand&amp;destination=North%20South%20Holiday%20Park%2C%20New%20Zealand" target="_blank" rel="noopener" title="Christchurch Airport → North South Holiday Park">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">約 30 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 50 分鐘</dd></div>
@@ -390,7 +392,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>前往星空小鎮</h2>
-<p class="route">Christchurch <span class="arrow" aria-hidden="true">→</span> Lake Tekapo</p>
+<p class="route">Christchurch <span class="arrow" aria-hidden="true">→</span> Lake Tekapo <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=North%20South%20Holiday%20Park%2C%20New%20Zealand&amp;destination=Lakes%20Edge%20Holiday%20Park%2C%20New%20Zealand" target="_blank" rel="noopener" title="North South Holiday Park → Lakes Edge Holiday Park">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">225 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 3 小時</dd></div>
@@ -413,7 +415,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>Mt John 與前進 Mt Cook</h2>
-<p class="route">Lake Tekapo <span class="arrow" aria-hidden="true">→</span> Mt Cook</p>
+<p class="route">Lake Tekapo <span class="arrow" aria-hidden="true">→</span> Mt Cook <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Lakes%20Edge%20Holiday%20Park%2C%20New%20Zealand&amp;destination=Glentanner%20Park%20Centre%2C%20New%20Zealand" target="_blank" rel="noopener" title="Lakes Edge Holiday Park → Glentanner Park Centre">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">120 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 1.75 小時</dd></div>
@@ -459,7 +461,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>Hooker Valley 吊橋步道</h2>
-<p class="route">Mt Cook <span class="arrow" aria-hidden="true">→</span> Twizel</p>
+<p class="route">Mt Cook <span class="arrow" aria-hidden="true">→</span> Twizel <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Glentanner%20Park%20Centre%2C%20New%20Zealand&amp;destination=Twizel%20Holiday%20Park%2C%20New%20Zealand" target="_blank" rel="noopener" title="Glentanner Park Centre → Twizel Holiday Park">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">65 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 45 分鐘</dd></div>
@@ -482,7 +484,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>翻越 Lindis Pass</h2>
-<p class="route">Twizel <span class="arrow" aria-hidden="true">→</span> Wanaka</p>
+<p class="route">Twizel <span class="arrow" aria-hidden="true">→</span> Wanaka <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Twizel%20Holiday%20Park%2C%20New%20Zealand&amp;destination=Hampshire%20Holiday%20Parks%20%E2%80%93%20W%C4%81naka%2C%20New%20Zealand" target="_blank" rel="noopener" title="Twizel Holiday Park → Hampshire Holiday Parks – Wānaka">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">145 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 2 小時</dd></div>
@@ -528,7 +530,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>淘金小鎮</h2>
-<p class="route">Wanaka <span class="arrow" aria-hidden="true">→</span> Queenstown</p>
+<p class="route">Wanaka <span class="arrow" aria-hidden="true">→</span> Queenstown <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Hampshire%20Holiday%20Parks%20%E2%80%93%20W%C4%81naka%2C%20New%20Zealand&amp;destination=Hampshire%20Holiday%20Parks%20%E2%80%93%20Queenstown%20Lakeview%2C%20New%20Zealand" target="_blank" rel="noopener" title="Hampshire Holiday Parks – Wānaka → Hampshire Holiday Parks – Queenstown Lakeview">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">115 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 1.5 小時</dd></div>
@@ -574,7 +576,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>前往 Fiordland National Park</h2>
-<p class="route">Queenstown <span class="arrow" aria-hidden="true">→</span> Te Anau</p>
+<p class="route">Queenstown <span class="arrow" aria-hidden="true">→</span> Te Anau <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Hampshire%20Holiday%20Parks%20%E2%80%93%20Queenstown%20Lakeview%2C%20New%20Zealand&amp;destination=Te%20Anau%20Lakeview%20Holiday%20Park%20%26%20Motels%2C%20New%20Zealand" target="_blank" rel="noopener" title="Hampshire Holiday Parks – Queenstown Lakeview → Te Anau Lakeview Holiday Park &amp; Motels">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">170 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 2.25 小時</dd></div>
@@ -597,7 +599,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>Milford Sound</h2>
-<p class="route">Te Anau <span class="arrow" aria-hidden="true">→</span> Milford Sound</p>
+<p class="route">Te Anau <span class="arrow" aria-hidden="true">→</span> Milford Sound <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Te%20Anau%20Lakeview%20Holiday%20Park%20%26%20Motels%2C%20New%20Zealand&amp;destination=Milford%20Sound%2C%20New%20Zealand" target="_blank" rel="noopener" title="Te Anau Lakeview Holiday Park &amp; Motels → Milford Sound">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">240 km 來回</dd></div>
 <div><dt>車程</dt><dd class="num">單程 2–2.5 小時</dd></div>
@@ -620,7 +622,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>前往 Dunedin</h2>
-<p class="route">Te Anau <span class="arrow" aria-hidden="true">→</span> Dunedin</p>
+<p class="route">Te Anau <span class="arrow" aria-hidden="true">→</span> Dunedin <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Te%20Anau%20Lakeview%20Holiday%20Park%20%26%20Motels%2C%20New%20Zealand&amp;destination=Dunedin%20Holiday%20Park%20%26%20Motels%2C%20New%20Zealand" target="_blank" rel="noopener" title="Te Anau Lakeview Holiday Park &amp; Motels → Dunedin Holiday Park &amp; Motels">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">290 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 3.5–4 小時</dd></div>
@@ -643,7 +645,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>Tunnel Beach、Moeraki Boulders 與藍企鵝</h2>
-<p class="route">Dunedin <span class="arrow" aria-hidden="true">→</span> Oamaru</p>
+<p class="route">Dunedin <span class="arrow" aria-hidden="true">→</span> Oamaru <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Dunedin%20Holiday%20Park%20%26%20Motels%2C%20New%20Zealand&amp;destination=Oamaru%20TOP%2010%20Holiday%20Park%2C%20New%20Zealand" target="_blank" rel="noopener" title="Dunedin Holiday Park &amp; Motels → Oamaru TOP 10 Holiday Park">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">125 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 1.75 小時</dd></div>
@@ -666,7 +668,7 @@ a.dlk:hover, a.dlk:focus-visible { background: var(--accent); color: var(--card)
 </figure>
 <div class="body"><div class="bl">
 <h2>回到 Christchurch</h2>
-<p class="route">Oamaru <span class="arrow" aria-hidden="true">→</span> Christchurch</p>
+<p class="route">Oamaru <span class="arrow" aria-hidden="true">→</span> Christchurch <a class="rtlk" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Oamaru%20TOP%2010%20Holiday%20Park%2C%20New%20Zealand&amp;destination=North%20South%20Holiday%20Park%2C%20New%20Zealand" target="_blank" rel="noopener" title="Oamaru TOP 10 Holiday Park → North South Holiday Park">路線 ↗</a></p>
 <dl class="stats">
 <div><dt>距離</dt><dd class="num">250 km</dd></div>
 <div><dt>車程</dt><dd class="num">約 3.25 小時</dd></div>
