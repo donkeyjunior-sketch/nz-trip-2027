@@ -439,7 +439,9 @@ body.side-collapsed nav.tabs a{justify-content:center;padding:10px 0}
 body.side-collapsed nav.tabs a .lab{display:none}
 .side-brand{position:fixed;top:0;left:0;z-index:61;height:60px;display:flex;align-items:center;gap:10px;padding:0 12px;width:var(--sidew);transition:width .2s;pointer-events:none}
 body.side-collapsed .side-brand{width:var(--sidew-c)}
-.side-brand b{font-family:var(--display);font-weight:900;font-size:16px;color:var(--fg);white-space:nowrap;overflow:hidden;padding-left:46px}
+.side-brand b{font-family:var(--display);font-weight:900;font-size:17px;line-height:1.15;color:var(--fg);white-space:nowrap;overflow:hidden;padding-left:46px;display:flex;flex-direction:column;justify-content:center}
+.side-brand .sb2{font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.06em;color:var(--muted);margin-top:2px}
+.side-brand .sby{display:none}
 body.side-collapsed .side-brand b{display:none}
 #sidetoggle{position:fixed;top:12px;left:12px;z-index:62;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent}
 #sidetoggle:hover{background:var(--tint)}
@@ -455,6 +457,7 @@ body.side-collapsed .side-brand b{display:none}
   body.side-collapsed nav.tabs a .lab{display:inline}
   .side-brand{width:100%!important;height:var(--topbar);background:var(--card);border-bottom:1px solid var(--line);pointer-events:auto;z-index:59}
   .side-brand b{display:block!important;padding-left:50px;font-size:15px}
+  .side-brand .sb2{display:none}.side-brand .sby{display:inline}.side-brand .sb1{margin-right:6px}
   .side-cur{display:inline;color:var(--accent);font-family:var(--body);font-weight:700;font-size:15px}
   #sidetoggle{top:6px;left:max(10px,env(safe-area-inset-left,0px))}
   body.side-open #sidebackdrop{display:block;position:fixed;inset:0;z-index:58;background:rgba(0,0,0,.35)}
@@ -462,7 +465,7 @@ body.side-collapsed .side-brand b{display:none}
 }
 @media print{nav.tabs,#sidetoggle,.side-brand{display:none!important}body:has(nav.tabs){padding:0!important}}
 </style>
-<div class="side-brand"><b>South Island 2027 <span class="side-cur"></span></b></div>
+<div class="side-brand"><b><span class="sb1">South Island<span class="sby"> 2027</span></span><span class="sb2">冬季之旅 · 2027</span><span class="side-cur"></span></b></div>
 <button id="sidetoggle" type="button" aria-label="展開或收合選單" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
 <div id="sidebackdrop"></div>
 <script>
